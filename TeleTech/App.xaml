@@ -9,6 +9,7 @@
                 <ResourceDictionary Source="Style/Colors.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="Style/Images.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="Style/Text.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Style/Buttons.xaml"></ResourceDictionary>
                 <!--Connect VM & View-->
                 <ResourceDictionary Source="Services/DataTemplate.xaml" />
             </ResourceDictionary.MergedDictionaries>

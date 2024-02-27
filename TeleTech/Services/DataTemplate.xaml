@@ -11,5 +11,11 @@
     <DataTemplate DataType="{x:Type vm:UsersViewModel}">
         <view:UsersView />
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:TariffViewModel}">
+        <view:TariffView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
+        <view:SettingsView />
+    </DataTemplate>
 
 </ResourceDictionary>
