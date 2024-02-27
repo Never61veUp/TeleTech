@@ -1,0 +1,40 @@
+﻿<Window x:Class="TeleTech.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TeleTech.View"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="720" Width="1440"
+        WindowStartupLocation="CenterScreen"
+        >
+    <Grid Background="{StaticResource MainBackgroundColor}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="7*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <!--Left Menu-->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <!--Menu Icon-->
+            <Button HorizontalAlignment="Left" Margin="20 25 0 30" Background="Transparent" BorderBrush="Transparent">
+                <Image Source="/Assets/Icons/Mask group.png" Height="30"></Image>
+            </Button>
+            <!--Left Menu Button Area-->
+            <Border Grid.Row="1" Background="{StaticResource SecondaryBackgroundColor}" CornerRadius="0 70 0 0">
+                <!--User Avatar-->
+                <Grid>
+                    <Image Source="{Binding UserAvatar}"></Image>
+                </Grid>
+                
+            </Border>
+        </Grid>
+        
+        
+        
+        
+    </Grid>
+</Window>
