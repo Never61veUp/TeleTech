@@ -3,11 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:TeleTech.ViewModel"
         xmlns:local="clr-namespace:TeleTech.View"
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1440"
-        WindowStartupLocation="CenterScreen"
-        >
+        WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <vm:MainWindowViewModel />
+    </Window.DataContext>
+
     <Grid Background="{StaticResource MainBackgroundColor}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -16,22 +20,70 @@
         <!--Left Menu-->
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
             </Grid.RowDefinitions>
-            <!--Menu Icon-->
-            <Button HorizontalAlignment="Left" Margin="20 25 0 30" Background="Transparent" BorderBrush="Transparent">
-                <Image Source="/Assets/Icons/Mask group.png" Height="30"></Image>
-            </Button>
-            <!--Left Menu Button Area-->
-            <Border Grid.Row="1" Background="{StaticResource SecondaryBackgroundColor}" CornerRadius="0 70 0 0">
-                <!--User Avatar-->
+            <Grid>
+                <!--Menu Icon-->
+                <Button HorizontalAlignment="Left" Margin="20 0 0 50" Background="Transparent" BorderBrush="Transparent">
+                    <Image Source="/Assets/Icons/Mask group.png" Height="30"></Image>
+                </Button>
+            </Grid>
+            <Grid Grid.Row="1">
+                <!--Left Menu Button Area-->
+                <Border Grid.Row="1" Background="{StaticResource SecondaryBackgroundColor}" CornerRadius="0 70 0 0">
+                    <!--User Avatar-->
+                    <Ellipse Width="85" Height="85" VerticalAlignment="Top" Margin=" 0 -30 60 0">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="{Binding UserAvatar}" Stretch="UniformToFill"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                </Border>
                 <Grid>
-                    <Image Source="{Binding UserAvatar}"></Image>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{Binding UserName}" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 55 30 0" Style="{StaticResource LeftBarUserNameText}"></TextBlock>
+                    <TextBlock Text="{Binding UserGeoStatus}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 0 30 40" Style="{StaticResource LeftBarUserGeoStatusText}"></TextBlock>
+                    <Rectangle VerticalAlignment="Bottom" Width="125" Height="1" Fill="{StaticResource MainTextColor}" RadiusX="1" RadiusY="1"></Rectangle>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <Image Source="/Assets/Icons/home.png" Width="25" HorizontalAlignment="Left" Margin="15"> </Image>
+                        <TextBlock Text="Главная" Style="{StaticResource LeftBarMenuItems}" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
+
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" >
+                        <Image Source="/Assets/Icons/users.png" Width="25" HorizontalAlignment="Left" Margin="15"></Image>
+                        <TextBlock Text="Клиенты" Style="{StaticResource LeftBarMenuItems}" VerticalAlignment="Center"></TextBlock>
+
+                    </StackPanel>
+                    <StackPanel Grid.Row="3" Orientation="Horizontal">
+                        <Image Source="/Assets/Icons/tariff.png" Width="25" HorizontalAlignment="Left" Margin="15"></Image>
+                        <TextBlock Text="Тарифы" Style="{StaticResource LeftBarMenuItems}" VerticalAlignment="Center"></TextBlock>
+
+                    </StackPanel>
+                    <StackPanel Grid.Row="4" Orientation="Horizontal">
+                        <Image Source="/Assets/Icons/settings.png" Width="25" HorizontalAlignment="Left" Margin="15"></Image>
+                        <TextBlock Text="Настройки" Style="{StaticResource LeftBarMenuItems}" VerticalAlignment="Center" Margin="0 -10 0 0"></TextBlock>
+
+                    </StackPanel>
+                    <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="0 20 0 0">
+                        <Image Source="/Assets/Icons/logout.png" Width="25" HorizontalAlignment="Left" Margin="20"></Image>
+                        <TextBlock Text="Выйти" Style="{StaticResource LeftBarMenuItems}" VerticalAlignment="Center" Margin="0 -10 0 0"></TextBlock>
+                    </StackPanel>
                 </Grid>
-                
-            </Border>
+            </Grid>
+            <Button Command="{Binding OpenUsersPage}"></Button>
+            
+            
+            
+            
         </Grid>
+        <UserControl Grid.Column="1" Content="{Binding Page}"></UserControl>
         
         
         

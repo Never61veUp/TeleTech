@@ -9,16 +9,39 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Icons\ava1.png" />
+    <None Remove="Assets\Icons\home.png" />
+    <None Remove="Assets\Icons\logout.png" />
     <None Remove="Assets\Icons\Mask group.png" />
+    <None Remove="Assets\Icons\settings.png" />
+    <None Remove="Assets\Icons\tariff.png" />
+    <None Remove="Assets\Icons\users.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Model\" />
-    <Folder Include="ViewModel\" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\Icons\ava1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Icons\home.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Icons\logout.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\Icons\Mask group.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Icons\settings.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Icons\tariff.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Icons\users.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

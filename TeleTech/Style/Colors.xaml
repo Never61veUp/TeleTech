@@ -2,5 +2,5 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <SolidColorBrush x:Key="MainBackgroundColor" Color="#21262A"/>
     <SolidColorBrush x:Key="SecondaryBackgroundColor" Color="#282C31"/>
-    <SolidColorBrush x:Key="MainTextColor" Color="#FEFAEC"/>
+    <SolidColorBrush x:Key="MainTextColor" Color="#FFFFFF"/>
 </ResourceDictionary>
