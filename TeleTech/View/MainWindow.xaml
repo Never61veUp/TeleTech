@@ -53,40 +53,40 @@
                     <TextBlock Text="{Binding UserGeoStatus}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 0 30 40" Style="{StaticResource LeftBarUserGeoStatusText}"></TextBlock>
                     <Rectangle VerticalAlignment="Bottom" Width="125" Height="1" Fill="{StaticResource MainTextColor}" RadiusX="1" RadiusY="1"></Rectangle>
                     <!--Главная-->
-                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding OpenHomePageCommand}" Grid.Row="1" Margin="0 20 0 0" IsChecked="True">
+                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding OpenHomePageCommand}" Grid.Row="1" IsChecked="True">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Assets/Icons/home.png" Width="25" HorizontalAlignment="Left" Margin="20"></Image>
                             <TextBlock Text="Главная" Style="{StaticResource LeftBarMenuItems}" VerticalAlignment="Center" ></TextBlock>
                         </StackPanel>
                     </Menu:Btn>
                     <!--Пользователи-->
-                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding OpenUsersPageCommand}" Grid.Row="2" Margin="0 20 0 0">
+                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding OpenUsersPageCommand}" Grid.Row="2">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Assets/Icons/users.png" Width="25" HorizontalAlignment="Left" Margin="20"></Image>
                             <TextBlock Text="Клиенты" Style="{StaticResource LeftBarMenuItems}" VerticalAlignment="Center" ></TextBlock>
                         </StackPanel>
                     </Menu:Btn>
                     <!--Тарифы-->
-                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding OpenTariffPageCommand}" Grid.Row="3" Margin="0 20 0 0">
+                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding OpenTariffPageCommand}" Grid.Row="3">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Assets/Icons/tariff.png" Width="25" HorizontalAlignment="Left" Margin="20"></Image>
                             <TextBlock Text="Тарифы" Style="{StaticResource LeftBarMenuItems}" VerticalAlignment="Center" ></TextBlock>
                         </StackPanel>
                     </Menu:Btn>
                     <!--Настройки-->
-                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding OpenSettingsPageCommand}" Grid.Row="4" Margin="0 20 0 0">
+                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding OpenSettingsPageCommand}" Grid.Row="4">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="/Assets/Icons/settings.png" Width="25" HorizontalAlignment="Left" Margin="20"></Image>
-                            <TextBlock Text="Настройки" Style="{StaticResource LeftBarMenuItems}" VerticalAlignment="Center" Margin="0 -10 0 0 "></TextBlock>
+                            <Image Source="/Assets/Icons/settings.png" Width="25" HorizontalAlignment="Left" Margin="20" ></Image>
+                            <TextBlock Text="Настройки" Style="{StaticResource LeftBarMenuItems}" VerticalAlignment="Center"></TextBlock>
                         </StackPanel>
                     </Menu:Btn>
 
 
                     <!--выйти-->
-                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding OpenUsersPageCommand}" Grid.Row="5" Margin="0 20 0 0">
+                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding OpenUsersPageCommand}" Grid.Row="5">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Assets/Icons/logout.png" Width="25" HorizontalAlignment="Left" Margin="20"></Image>
-                            <TextBlock Text="Выйти" Style="{StaticResource LeftBarMenuItems}" VerticalAlignment="Center" Margin="0 -10 0 0 "></TextBlock>
+                            <TextBlock Text="Выйти" Style="{StaticResource LeftBarMenuItems}" VerticalAlignment="Center"></TextBlock>
                         </StackPanel>
                     </Menu:Btn>
                             
