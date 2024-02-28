@@ -16,7 +16,7 @@ namespace TeleTech.ViewModel
         public ICommand OpenTariffPageCommand { get; set; }
         public ICommand OpenSettingsPageCommand { get; set; }
         #endregion
-        private object _page;
+        private object _page = new LogInViewModel();
         public object Page { 
             get 
             { 
@@ -45,7 +45,7 @@ namespace TeleTech.ViewModel
         private string _userGeoStatus;
         public string UserGeoStatus { get => _userGeoStatus; set => _userGeoStatus = value; }
         
-        private void OpenHomePageMethod(object obj) => Page = new HomeViewModel();
+        public void OpenHomePageMethod(object obj) => Page = new HomeViewModel();
         private void OpenUsersPageMethod(object obj) => Page = new UsersViewModel();
         private void OpenTariffPageMethod(object obj) => Page = new TariffViewModel();
         private void OpenSettingsPageMethod(object obj) => Page = new SettingsViewModel();
@@ -59,7 +59,10 @@ namespace TeleTech.ViewModel
             UserAvatar = "/Assets/Icons/ava1.png";
             UserName = "Евгений Картов";
             UserGeoStatus = "Москва, Россия";
-            Page = new HomeViewModel();
+            
+
+
+
         }
     }
 }

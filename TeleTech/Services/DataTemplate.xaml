@@ -17,5 +17,8 @@
     <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
         <view:SettingsView />
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:LogInViewModel}">
+        <view:LogInView />
+    </DataTemplate>
 
 </ResourceDictionary>

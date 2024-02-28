@@ -8,8 +8,9 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <StackPanel>
-            <TextBox></TextBox>
-            <TextBox></TextBox>
+            <TextBox  Text="{Binding EmployeeCode}"></TextBox>
+            <TextBox Text="{Binding Password}"></TextBox>
+            <Button Command="{Binding SingIn}"></Button>
         </StackPanel>
     </Grid>
 </UserControl>
