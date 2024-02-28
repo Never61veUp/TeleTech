@@ -51,6 +51,7 @@ namespace TeleTech.ViewModel
         private void OpenSettingsPageMethod(object obj) => Page = new SettingsViewModel();
         public MainWindowViewModel()
         {
+            
             OpenHomePageCommand = new RelayCommand(OpenHomePageMethod);
             OpenUsersPageCommand = new RelayCommand(OpenUsersPageMethod);
             OpenTariffPageCommand = new RelayCommand(OpenTariffPageMethod);
