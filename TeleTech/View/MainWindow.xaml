@@ -34,7 +34,7 @@
                 <!--Left Menu Button Area-->
                 <Border Grid.Row="1" Background="{StaticResource SecondaryBackgroundColor}" CornerRadius="0 70 0 0">
                     <!--User Avatar-->
-                    <Ellipse Width="85" Height="85" VerticalAlignment="Top" Margin=" 0 -30 60 0">
+                    <Ellipse Width="85" Height="85" VerticalAlignment="Top" Margin=" 0 -30 35 0">
                         <Ellipse.Fill>
                             <ImageBrush ImageSource="{Binding UserAvatar}" Stretch="UniformToFill"/>
                         </Ellipse.Fill>
@@ -42,16 +42,20 @@
                 </Border>
                 <Grid>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"></RowDefinition>
                         <RowDefinition Height="2*"></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
                         <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="4*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <TextBlock Text="{Binding UserName}" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 55 30 0" Style="{StaticResource LeftBarUserNameText}"></TextBlock>
-                    <TextBlock Text="{Binding UserGeoStatus}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 0 30 40" Style="{StaticResource LeftBarUserGeoStatusText}"></TextBlock>
-                    <Rectangle VerticalAlignment="Bottom" Width="125" Height="1" Fill="{StaticResource MainTextColor}" RadiusX="1" RadiusY="1"></Rectangle>
+                    <StackPanel>
+                        <TextBlock Text="{Binding UserName}" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 55 20 0" Style="{StaticResource LeftBarUserNameText}"></TextBlock>
+                        <TextBlock Text="{Binding UserGeoStatus}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin=" 0 0 20 0" Style="{StaticResource LeftBarUserGeoStatusText}"></TextBlock>
+                        <Rectangle Margin="0 10 0 0" VerticalAlignment="Bottom" Width="150" Height="1" Fill="{StaticResource MainTextColor}" RadiusX="1" RadiusY="1"></Rectangle>
+                    </StackPanel>
+                    
+                    
                     <!--Главная-->
                     <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding OpenHomePageCommand}" Grid.Row="1" IsChecked="True">
                         <StackPanel Orientation="Horizontal">
