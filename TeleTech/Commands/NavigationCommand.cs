@@ -8,16 +8,21 @@ using TeleTech.ViewModel;
 
 namespace TeleTech.Commands
 {
-    internal class UsersCommand : CommandBase
+    internal class NavigationCommand<TView> : CommandBase
+        where TView : ViewModelBase
     {
+
         private readonly NavigationStore _navigationStore;
-        public UsersCommand(NavigationStore navigationStore)
+        private readonly Func<TView> _createView;
+
+        public NavigationCommand(NavigationStore navigationStore, Func<TView> createView)
         {
             _navigationStore = navigationStore;
+            _createView = createView;
         }
         public override void Execute(object? parameter)
         {
-            _navigationStore.CurrentView = new UsersViewModel();
+            _navigationStore.CurrentView = _createView();
 
         }
     }

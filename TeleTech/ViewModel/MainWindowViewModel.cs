@@ -26,10 +26,10 @@ namespace TeleTech.ViewModel
             _navigationStore = navigationStore;
             _navigationStore.CurrentViewChanged += OnCurrentViewChanged;
 
-            HomeCommand = new HomeCommand(navigationStore);
-            UsersCommand = new UsersCommand(navigationStore);
-            TariffCommand = new TariffCommand(navigationStore);
-            SettingsCommand = new SettingsCommand(navigationStore);
+            HomeCommand = new NavigationCommand<HomeViewModel>(navigationStore, () => new HomeViewModel());
+            UsersCommand = new NavigationCommand<UsersViewModel>(navigationStore, () => new UsersViewModel());
+            TariffCommand = new NavigationCommand<TariffViewModel>(navigationStore, () => new TariffViewModel());
+            SettingsCommand = new NavigationCommand<SettingsViewModel>(navigationStore, () => new SettingsViewModel());
             UserAvatar = "/Assets/Icons/ava1.png";
             UserName = "Евгений Картов";
             UserGeoStatus = "Москва, Россия";

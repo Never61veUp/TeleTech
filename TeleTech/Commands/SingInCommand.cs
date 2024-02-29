@@ -18,6 +18,7 @@ namespace TeleTech.Commands
         }
         public override void Execute(object? parameter)
         {
+            
             _navigationStore.CurrentView = new HomeViewModel();
 
         }
