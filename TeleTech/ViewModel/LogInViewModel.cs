@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using TeleTech.Commands;
 using TeleTech.Model;
-using TeleTech.Services;
 using TeleTech.Stores;
 
 namespace TeleTech.ViewModel
@@ -20,34 +12,30 @@ namespace TeleTech.ViewModel
         private int _employeeCode;
         public int EmployeeCode
         {
-            get
-            {
-                return _employeeCode;
-            }
+            get => _employeeCode;
             set
             {
-                _employeeCode = value;OnPropertyChanged(nameof(EmployeeCode));
+                _employeeCode = value;
+                OnPropertyChanged(nameof(EmployeeCode));
             }
         }
         private string _password;
         public string Password
         {
-            get
-            {
-                return _password;
-            }
+            get => _password;
+
             set
             {
-                _password = value; OnPropertyChanged(nameof(Password));
+                _password = value;
+                OnPropertyChanged(nameof(Password));
             }
         }
         public ICommand SingInCommand { get; }
-        
-        private void SingInButton(object obj)
-        {
-            
-            
-            
+
+
+
+
+
         //if (Convert.ToString(EmployeeCode) != String.Empty &&
         //    Password != String.Empty &&
         //    !String.IsNullOrWhiteSpace(Convert.ToString(EmployeeCode)) &&
@@ -70,7 +58,7 @@ namespace TeleTech.ViewModel
 
 
 
-    }
+
         public LogInViewModel(NavigationStore navigationStore)
         {
             //employees = armContext.Employees.ToList();

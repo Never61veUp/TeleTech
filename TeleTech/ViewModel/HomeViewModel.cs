@@ -9,7 +9,6 @@ namespace TeleTech.ViewModel
 {
     internal class HomeViewModel : ViewModelBase
     {
-        ArmContext armContext = new ArmContext();
         public HomeViewModel()
         {
             
