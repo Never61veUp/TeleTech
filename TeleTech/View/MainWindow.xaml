@@ -9,9 +9,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1440"
         WindowStartupLocation="CenterScreen">
-    <Window.DataContext>
-        <vm:MainWindowViewModel />
-    </Window.DataContext>
+
 
     <Grid Background="{StaticResource MainBackgroundColor}">
         <Grid.ColumnDefinitions>
@@ -57,28 +55,28 @@
                     
                     
                     <!--Главная-->
-                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding OpenHomePageCommand}" Grid.Row="1" IsChecked="True">
+                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding HomeCommand}" Grid.Row="1" IsChecked="True">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Assets/Icons/home.png" Width="25" HorizontalAlignment="Left" Margin="20"></Image>
                             <TextBlock Text="Главная" Style="{StaticResource LeftBarMenuItems}" VerticalAlignment="Center" ></TextBlock>
                         </StackPanel>
                     </Menu:Btn>
                     <!--Пользователи-->
-                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding OpenUsersPageCommand}" Grid.Row="2">
+                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding UsersCommand}" Grid.Row="2">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Assets/Icons/users.png" Width="25" HorizontalAlignment="Left" Margin="20"></Image>
                             <TextBlock Text="Клиенты" Style="{StaticResource LeftBarMenuItems}" VerticalAlignment="Center" ></TextBlock>
                         </StackPanel>
                     </Menu:Btn>
                     <!--Тарифы-->
-                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding OpenTariffPageCommand}" Grid.Row="3">
+                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding TariffCommand}" Grid.Row="3">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Assets/Icons/tariff.png" Width="25" HorizontalAlignment="Left" Margin="20"></Image>
                             <TextBlock Text="Тарифы" Style="{StaticResource LeftBarMenuItems}" VerticalAlignment="Center" ></TextBlock>
                         </StackPanel>
                     </Menu:Btn>
                     <!--Настройки-->
-                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding OpenSettingsPageCommand}" Grid.Row="4">
+                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding SettingsCommand}" Grid.Row="4">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Assets/Icons/settings.png" Width="25" HorizontalAlignment="Left" Margin="20" ></Image>
                             <TextBlock Text="Настройки" Style="{StaticResource LeftBarMenuItems}" VerticalAlignment="Center"></TextBlock>
@@ -105,7 +103,7 @@
             
             
         </Grid>
-        <UserControl Grid.Column="1" Content="{Binding Page}"></UserControl>
+        <UserControl Grid.Column="1" Content="{Binding CurrentView}"></UserControl>
         
         
         

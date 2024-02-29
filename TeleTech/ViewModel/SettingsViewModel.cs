@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TeleTech.ViewModel
 {
-    internal class SettingsViewModel
+    internal class SettingsViewModel : ViewModelBase
     {
     }
 }

@@ -10,7 +10,7 @@
         <StackPanel>
             <TextBox  Text="{Binding EmployeeCode}"></TextBox>
             <TextBox Text="{Binding Password}"></TextBox>
-            <Button Command="{Binding SingIn}"></Button>
+            <Button Command="{Binding SingInCommand}"></Button>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -7,7 +7,7 @@ using TeleTech.Model;
 
 namespace TeleTech.ViewModel
 {
-    internal class HomeViewModel
+    internal class HomeViewModel : ViewModelBase
     {
         ArmContext armContext = new ArmContext();
         public HomeViewModel()

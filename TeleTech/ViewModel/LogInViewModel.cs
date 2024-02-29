@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using TeleTech.Commands;
 using TeleTech.Model;
 using TeleTech.Services;
+using TeleTech.Stores;
 
 namespace TeleTech.ViewModel
 {
@@ -39,37 +41,41 @@ namespace TeleTech.ViewModel
                 _password = value; OnPropertyChanged(nameof(Password));
             }
         }
-        public ICommand SingIn { get; set; }
+        public ICommand SingInCommand { get; }
+        
         private void SingInButton(object obj)
         {
-            if (Convert.ToString(EmployeeCode) != String.Empty &&
-                Password != String.Empty &&
-                !String.IsNullOrWhiteSpace(Convert.ToString(EmployeeCode)) &&
-                !String.IsNullOrWhiteSpace(Password))
-            {
-                int countRecord = employees.Where(x => x.EmployeeCode == EmployeeCode && x.Password == Password).Count();
-                if (countRecord == 1)
-                {
-                    MessageBox.Show("ds");
-                    MainWindowViewModel mainWindowViewModel = new MainWindowViewModel();
-                    mainWindowViewModel.OpenHomePageMethod(mainWindowViewModel.Page);
-
-                }
-            }
-            else
-            {
-                MessageBox.Show("Данные не введены");
-
-            }
-
-
-
-        }
-        public LogInViewModel()
-        {
-            employees = armContext.Employees.ToList();
-            SingIn = new RelayCommand(SingInButton);
             
+            
+            
+        //if (Convert.ToString(EmployeeCode) != String.Empty &&
+        //    Password != String.Empty &&
+        //    !String.IsNullOrWhiteSpace(Convert.ToString(EmployeeCode)) &&
+        //    !String.IsNullOrWhiteSpace(Password))
+        //{
+        //    int countRecord = employees.Where(x => x.EmployeeCode == EmployeeCode && x.Password == Password).Count();
+        //    if (countRecord == 1)
+        //    {
+        //        MessageBox.Show("ds");
+        //        MainWindowViewModel mainWindowViewModel = new MainWindowViewModel();
+        //        mainWindowViewModel.OpenHomePageMethod(mainWindowViewModel.Page);
+
+        //    }
+        //}
+        //else
+        //{
+        //    MessageBox.Show("Данные не введены");
+
+        //}
+
+
+
+    }
+        public LogInViewModel(NavigationStore navigationStore)
+        {
+            //employees = armContext.Employees.ToList();
+            SingInCommand = new SingInCommand(navigationStore);
+
 
         }
 

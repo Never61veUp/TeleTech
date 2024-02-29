@@ -15,5 +15,7 @@ namespace TeleTech.ViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
+
+        
     }
 }
