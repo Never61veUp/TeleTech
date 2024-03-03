@@ -15,20 +15,10 @@ namespace TeleTech.Stores
             }
         }
 
-        public bool IsLoggedIn()
-        {
-            if (CurrentAccount == null)
-                return false;
-            else return true;
-        }
+        public bool IsLoggedIn => CurrentAccount != null;
 
 
         public event Action? CurrentAccountChanged;
 
-
-        public AccountStore()
-        {
-
-        }
     }
 }

@@ -17,12 +17,10 @@ namespace TeleTech.Commands
             _navigationStore = navigationStore;
             _createView = createView;
             _accountStore = accountStore;
-
-
         }
         public override void Execute(object? parameter)
         {
-            if (_accountStore.IsLoggedIn())
+            if (_accountStore.IsLoggedIn)
             {
                 _navigationStore.CurrentView = _createView();
             }

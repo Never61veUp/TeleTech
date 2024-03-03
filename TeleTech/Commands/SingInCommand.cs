@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using TeleTech.Stores;
 using TeleTech.ViewModel;
-using TeleTech.Model;
 using Account = TeleTech.Model.Account;
 
 namespace TeleTech.Commands
@@ -21,18 +15,17 @@ namespace TeleTech.Commands
             _navigationStore = navigationStore;
             _accountStore = accountStore;
             _singInViewModel = singInViewModel;
-            
         }
         public override void Execute(object? parameter)
         {
 
-            
+
             if (_singInViewModel.EmployeeCode.ToString() != String.Empty &&
                 _singInViewModel.Password != String.Empty &&
                 !String.IsNullOrWhiteSpace(_singInViewModel.EmployeeCode.ToString()) &&
                 !String.IsNullOrWhiteSpace(_singInViewModel.Password))
             {
-                int countRecord = _singInViewModel.employeesList.Where(x => x.EmployeeCode == _singInViewModel.EmployeeCode 
+                int countRecord = _singInViewModel.employeesList.Where(x => x.EmployeeCode == _singInViewModel.EmployeeCode
                 && x.Password == _singInViewModel.Password).Count();
                 if (countRecord == 1)
                 {
@@ -43,7 +36,6 @@ namespace TeleTech.Commands
 
                     };
                     _accountStore.CurrentAccount = account;
-                    MessageBox.Show("Успешно");
                 }
                 else
                     MessageBox.Show("Неверные данные", "Save Error", MessageBoxButton.OK, MessageBoxImage.Error);
