@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TeleTech.Stores;
+﻿using TeleTech.Stores;
 using TeleTech.ViewModel;
 
 namespace TeleTech.Commands
@@ -14,16 +9,23 @@ namespace TeleTech.Commands
 
         private readonly NavigationStore _navigationStore;
         private readonly Func<TView> _createView;
+        private readonly AccountStore _accountStore;
 
-        public NavigationCommand(NavigationStore navigationStore, Func<TView> createView)
+        public NavigationCommand(NavigationStore navigationStore, Func<TView> createView, AccountStore accountStore)
         {
+
             _navigationStore = navigationStore;
             _createView = createView;
+            _accountStore = accountStore;
+
+
         }
         public override void Execute(object? parameter)
         {
-            _navigationStore.CurrentView = _createView();
-
+            if (_accountStore.IsLoggedIn())
+            {
+                _navigationStore.CurrentView = _createView();
+            }
         }
     }
 }

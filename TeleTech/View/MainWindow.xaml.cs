@@ -10,10 +10,11 @@ namespace TeleTech.View
     public partial class MainWindow : Window
     {
         NavigationStore navigationStore = new NavigationStore();
+        AccountStore accountStore = new AccountStore();
         MainWindow()
         {
-            DataContext = new MainWindowViewModel(navigationStore);
-            navigationStore.CurrentView = new SingInViewModel(navigationStore);
+            DataContext = new MainWindowViewModel(navigationStore, accountStore) ;
+            navigationStore.CurrentView = new SingInViewModel(navigationStore, accountStore);
         }
     }
 

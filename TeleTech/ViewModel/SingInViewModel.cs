@@ -8,7 +8,7 @@ namespace TeleTech.ViewModel
     internal class SingInViewModel : ViewModelBase
     {
         ArmContext armContext = new ArmContext();
-        List<Employee> employees;
+        public List<Employee> employeesList { get; }
         private int _employeeCode;
         public int EmployeeCode
         {
@@ -41,9 +41,14 @@ namespace TeleTech.ViewModel
 
 
 
-        public SingInViewModel(NavigationStore navigationStore)
+        public SingInViewModel(NavigationStore navigationStore, AccountStore accountStore)
         {
-            employees = armContext.Employees.ToList();
+            employeesList = armContext.Employees.ToList();
+
+
+
+
+            SingInCommand = new SingInCommand(navigationStore,accountStore,this);
             
         }
 
