@@ -20,5 +20,5 @@
     <DataTemplate DataType="{x:Type vm:SingInViewModel}">
         <view:LogInView />
     </DataTemplate>
-
+    <BooleanToVisibilityConverter x:Key="BoolToVis"/>
 </ResourceDictionary>
