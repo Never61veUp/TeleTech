@@ -51,8 +51,56 @@
                 <TextBlock Margin="10 0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
    Panel.ZIndex="1" Text="Поиск.." Visibility="{Binding ElementName=Search, Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
                 <TextBox x:Name="Search" Style="{StaticResource SearchBox}" Height="20"/>
-                
             </Grid>
+            <DataGrid Grid.Row="3" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ItemsSource="{Binding UsersWithSIMs}">
+                <DataGrid.Columns >
+                    <DataGridCheckBoxColumn CanUserResize="False" Width="auto">
+                        <DataGridCheckBoxColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <CheckBox/>
+                            </DataTemplate>
+                        </DataGridCheckBoxColumn.HeaderTemplate>
+                    </DataGridCheckBoxColumn>
+                    <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" >
+                        
+                    </DataGridTextColumn>
+                    <DataGridTemplateColumn Header="ФИО" IsReadOnly="True" Width="*" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+
+                                    <TextBlock Text="{Binding Name}" VerticalAlignment="Center"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Паспорт" Width="*" Binding="{Binding PassportId}" >
+                        
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Id SIM"  Width="*" Binding="{Binding SimCardNumber}">
+
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Тариф" Width="*">
+
+                    </DataGridTextColumn>
+                    <DataGridTemplateColumn Header="Редактировать" IsReadOnly="True" Width="auto" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Style="{StaticResource GridEditButton}">
+                                        <iconPacks:BoxIconsImage Kind="SolidEdit"/>
+                                    </Button>
+                                    <Button Style="{StaticResource GridDeleteButton}">
+                                        <iconPacks:MaterialDesignImage Kind="Delete"/>
+                                    </Button>
+                                    <TextBlock Text="f,j,f" VerticalAlignment="Center"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    
+                </DataGrid.Columns>
+            </DataGrid>
             
             
         </Grid>

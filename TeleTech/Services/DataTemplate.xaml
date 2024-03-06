@@ -3,7 +3,7 @@
                     xmlns:vm="clr-namespace:TeleTech.ViewModel"
                     xmlns:view="clr-namespace:TeleTech.View">
     <DataTemplate DataType="{x:Type vm:MainWindowViewModel}">
-        <view:MainWindow />
+        <view:MainWindow/>
     </DataTemplate>
     <DataTemplate DataType="{x:Type vm:HomeViewModel}">
         <view:HomeView />
