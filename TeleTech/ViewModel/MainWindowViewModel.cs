@@ -29,13 +29,13 @@ namespace TeleTech.ViewModel
             _accountStore = accountStore;
             _accountStore.CurrentAccountChanged += AccountStore_CurrentAccountChanged;
 
-            HomeCommand = new NavigationCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(),accountStore);
+            HomeCommand = new NavigationCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(), accountStore);
             UsersCommand = new NavigationCommand<UsersViewModel>(navigationStore, () => new UsersViewModel(), accountStore);
             TariffCommand = new NavigationCommand<TariffViewModel>(navigationStore, () => new TariffViewModel(), accountStore);
             SettingsCommand = new NavigationCommand<SettingsViewModel>(navigationStore, () => new SettingsViewModel(), accountStore);
 
 
-            
+
             UserAvatar = "/Assets/Icons/ava1.png";
         }
 

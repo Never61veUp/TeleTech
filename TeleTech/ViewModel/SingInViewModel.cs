@@ -33,7 +33,7 @@ namespace TeleTech.ViewModel
         public ICommand SingInCommand { get; }
 
 
-        
+
 
 
 
@@ -48,8 +48,8 @@ namespace TeleTech.ViewModel
 
 
 
-            SingInCommand = new SingInCommand(navigationStore,accountStore,this);
-            
+            SingInCommand = new SingInCommand(navigationStore, accountStore, this);
+
         }
 
     }

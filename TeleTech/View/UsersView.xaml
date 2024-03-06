@@ -61,10 +61,10 @@
                             </DataTemplate>
                         </DataGridCheckBoxColumn.HeaderTemplate>
                     </DataGridCheckBoxColumn>
-                    <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" >
+                    <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Id}">
                         
                     </DataGridTextColumn>
-                    <DataGridTemplateColumn Header="ФИО" IsReadOnly="True" Width="*" >
+                    <DataGridTemplateColumn Header="ФИО" IsReadOnly="True" Width="*" CanUserResize="False" >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -74,16 +74,16 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Паспорт" Width="*" Binding="{Binding PassportId}" >
+                    <DataGridTextColumn Header="Паспорт" Width="*" Binding="{Binding PassportId}" CanUserResize="False">
                         
                     </DataGridTextColumn>
-                    <DataGridTextColumn Header="Id SIM"  Width="*" Binding="{Binding SimCardNumber}">
+                    <DataGridTextColumn Header="Id SIM"  Width="*" Binding="{Binding SimCardNumber}" CanUserResize="False">
 
                     </DataGridTextColumn>
-                    <DataGridTextColumn Header="Тариф" Width="*">
+                    <DataGridTextColumn Header="Тариф" Width="*" Binding="{Binding Tariff}" CanUserResize="False">
 
                     </DataGridTextColumn>
-                    <DataGridTemplateColumn Header="Редактировать" IsReadOnly="True" Width="auto" >
+                    <DataGridTemplateColumn Header="Редактировать" IsReadOnly="True" Width="auto" CanUserResize="False" >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -93,7 +93,7 @@
                                     <Button Style="{StaticResource GridDeleteButton}">
                                         <iconPacks:MaterialDesignImage Kind="Delete"/>
                                     </Button>
-                                    <TextBlock Text="f,j,f" VerticalAlignment="Center"></TextBlock>
+                                    
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
