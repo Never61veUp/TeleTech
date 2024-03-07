@@ -1,22 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.Intrinsics.Arm;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using TeleTech.Model;
 
 namespace TeleTech.ViewModel
 {
     internal class UsersViewModel : ViewModelBase
     {
-        ArmContext armContext = new ArmContext();
+        private ArmContext armContext = new ArmContext();
+        private UserExtended UserExtended = new UserExtended();
 
-
-        List<Simissuance> simissuances;
-        List<Sim> sims;
-        List<User> users;
+        private List<Simissuance> simissuances;
+        private List<Sim> sims;
+        private List<User> users;
 
         public string CountUsers { get; set; }
 
@@ -25,6 +27,7 @@ namespace TeleTech.ViewModel
 
         public UsersViewModel()
         {
+            
             users = armContext.Users.ToList();
             simissuances = armContext.Simissuances.ToList();
             sims = armContext.Sims.ToList();
@@ -35,21 +38,22 @@ namespace TeleTech.ViewModel
                                 select new UserExtended
                                 {
                                     Name = u.Name,
+                                    Character = u.Name[0],
                                     Id = u.Id,
                                     PassportId = u.PassportId,
                                     SimCardNumber = si.SimcardNumber,
-                                    Tariff = s.Tariff
+                                    Tariff = s.Tariff,
+                                    BgColor = UserExtended.ChooseColor(u.Name[0])
+                                    
+
+                                    
                                 }).ToList();
+            //legacy :)
             //var userSims = from user in users
             //               join sim in simissuances on user.PassportId equals sim.PassportNumber
             //               select new UserExtended { Name = user.Name, SimCardNumber = sim.SimcardNumber, PassportId = user.PassportId, Id = user.Id, Tariff = sim.};
-
+            
             UsersWithSIMs = combinedData.ToList();
-
-
-
-
-
             CountUsers = $"{armContext.Users.Count()} пользователей";
         }
     }

@@ -52,7 +52,9 @@
    Panel.ZIndex="1" Text="Поиск.." Visibility="{Binding ElementName=Search, Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
                 <TextBox x:Name="Search" Style="{StaticResource SearchBox}" Height="20"/>
             </Grid>
-            <DataGrid Grid.Row="3" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ItemsSource="{Binding UsersWithSIMs}">
+            <DataGrid Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" 
+                      ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" Grid.Row="3" RowStyle="{StaticResource DataGridRowStyle}" 
+                      ItemsSource="{Binding UsersWithSIMs}" x:Name="UsersDataGrid">
                 <DataGrid.Columns >
                     <DataGridCheckBoxColumn CanUserResize="False" Width="auto">
                         <DataGridCheckBoxColumn.HeaderTemplate>
@@ -61,15 +63,17 @@
                             </DataTemplate>
                         </DataGridCheckBoxColumn.HeaderTemplate>
                     </DataGridCheckBoxColumn>
-                    <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Id}">
+                    <DataGridTextColumn Header="# " IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Id}">
                         
                     </DataGridTextColumn>
                     <DataGridTemplateColumn Header="ФИО" IsReadOnly="True" Width="*" CanUserResize="False" >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-
-                                    <TextBlock Text="{Binding Name}" VerticalAlignment="Center"></TextBlock>
+                                    <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="{Binding BgColor}">
+                                        <TextBlock Text="{Binding Character}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
+                                    </Border>
+                                    <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 0 1"></TextBlock>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -83,15 +87,15 @@
                     <DataGridTextColumn Header="Тариф" Width="*" Binding="{Binding Tariff}" CanUserResize="False">
 
                     </DataGridTextColumn>
-                    <DataGridTemplateColumn Header="Редактировать" IsReadOnly="True" Width="auto" CanUserResize="False" >
+                    <DataGridTemplateColumn Header="Редактировать" IsReadOnly="True" Width="auto" CanUserResize="False">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
                                     <Button Style="{StaticResource GridEditButton}">
-                                        <iconPacks:BoxIconsImage Kind="SolidEdit"/>
+                                        <iconPacks:Modern Kind="Edit"/>
                                     </Button>
-                                    <Button Style="{StaticResource GridDeleteButton}">
-                                        <iconPacks:MaterialDesignImage Kind="Delete"/>
+                                    <Button Style="{StaticResource GridDeleteButton}" Margin="8 0">
+                                        <iconPacks:MaterialDesign Kind="Delete"/>
                                     </Button>
                                     
                                 </StackPanel>
