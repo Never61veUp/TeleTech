@@ -6,14 +6,20 @@ using System.Linq;
 using System.Runtime.Intrinsics.Arm;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using System.Windows.Media;
+using TeleTech.Commands;
 using TeleTech.Model;
+using TeleTech.View;
 
 namespace TeleTech.ViewModel
 {
     internal class UsersViewModel : ViewModelBase
     {
+        public ICommand AddNewClientCommand {  get; set; }
+
         private ArmContext armContext = new ArmContext();
+
         private UserExtended UserExtended = new UserExtended();
 
         private List<Simissuance> simissuances;
@@ -37,13 +43,15 @@ namespace TeleTech.ViewModel
                                 join s in armContext.Sims on si.SimcardNumber equals s.SimcardNumber
                                 select new UserExtended
                                 {
-                                    Name = u.Name,
+                                    Name = $"{u.Surname} {u.Name[0]}.{u.Patronymic[0]}." ,
                                     Character = u.Name[0],
                                     Id = u.Id,
                                     PassportId = u.PassportId,
                                     SimCardNumber = si.SimcardNumber,
                                     Tariff = s.Tariff,
-                                    BgColor = UserExtended.ChooseColor(u.Name[0])
+                                    BgColor = UserExtended.ChooseColor(u.Name[0]),
+                                    Birthday = u.Birthday,
+                                    Address = u.Address,
                                     
 
                                     
@@ -54,6 +62,7 @@ namespace TeleTech.ViewModel
             //               select new UserExtended { Name = user.Name, SimCardNumber = sim.SimcardNumber, PassportId = user.PassportId, Id = user.Id, Tariff = sim.};
             
             UsersWithSIMs = combinedData.ToList();
+            
             CountUsers = $"{armContext.Users.Count()} пользователей";
         }
     }

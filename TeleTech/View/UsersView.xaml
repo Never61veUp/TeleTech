@@ -26,7 +26,7 @@
             
             <TextBlock Text="Пользователи" Grid.Row="0" FontSize="32" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
             <!--AddNewUserButton-->
-            <Button Grid.Row="0" Style="{StaticResource AddNewUser}">
+            <Button Grid.Row="0" Style="{StaticResource AddNewUser}" Command="{Binding AddNewClientCommand}">
                 <StackPanel Orientation="Horizontal">
                     <iconPacks:PackIconModern Kind="Add" Margin="0 0 10 0"/>
                     <TextBlock Text="Добавить пользователя"></TextBlock>
@@ -78,13 +78,19 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Паспорт" Width="*" Binding="{Binding PassportId}" CanUserResize="False">
+                    <DataGridTextColumn IsReadOnly="True" Header="Паспорт" Width="*" Binding="{Binding PassportId}" CanUserResize="False">
                         
                     </DataGridTextColumn>
-                    <DataGridTextColumn Header="Id SIM"  Width="*" Binding="{Binding SimCardNumber}" CanUserResize="False">
+                    <DataGridTextColumn IsReadOnly="True" Header="Год рождения"  Width="*" Binding="{Binding Birthday}" CanUserResize="False">
 
                     </DataGridTextColumn>
-                    <DataGridTextColumn Header="Тариф" Width="*" Binding="{Binding Tariff}" CanUserResize="False">
+                    <DataGridTextColumn IsReadOnly="True" Header="Адрес"  Width="*" Binding="{Binding Address}" CanUserResize="False">
+
+                    </DataGridTextColumn>
+                    <DataGridTextColumn IsReadOnly="True" Header="Id SIM"  Width="*" Binding="{Binding SimCardNumber}" CanUserResize="False">
+
+                    </DataGridTextColumn>
+                    <DataGridTextColumn IsReadOnly="True" Header="Тариф" Width="*" Binding="{Binding Tariff}" CanUserResize="False">
 
                     </DataGridTextColumn>
                     <DataGridTemplateColumn Header="Редактировать" IsReadOnly="True" Width="auto" CanUserResize="False">

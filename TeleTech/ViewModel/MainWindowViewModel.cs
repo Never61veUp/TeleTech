@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Windows.Media;
+using System.Windows.Input;
 using TeleTech.Commands;
 using TeleTech.Stores;
 
@@ -12,9 +13,11 @@ namespace TeleTech.ViewModel
         public ICommand TariffCommand { get; }
         public ICommand SettingsCommand { get; }
         #endregion
-        public string UserAvatar { get; set; }
+        
         public string? UserName => _accountStore.CurrentAccount?.FirstName;
         public string? UserGeoStatus => _accountStore.CurrentAccount?.Location;
+        public char? UserCharacter => _accountStore.CurrentAccount?.Character;
+        public Brush? UserAvatarColor => _accountStore.CurrentAccount?.BgColor;
 
         public ViewModelBase? CurrentView => _navigationStore.CurrentView;
 
@@ -36,13 +39,15 @@ namespace TeleTech.ViewModel
 
 
 
-            UserAvatar = "/Assets/Icons/ava1.png";
+            
         }
 
         private void AccountStore_CurrentAccountChanged()
         {
             OnPropertyChanged(nameof(UserName));
             OnPropertyChanged(nameof(UserGeoStatus));
+            OnPropertyChanged(nameof(UserCharacter));
+            OnPropertyChanged(nameof(UserAvatarColor));
         }
 
         private void OnCurrentViewChanged()

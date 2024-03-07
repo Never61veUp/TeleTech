@@ -32,11 +32,12 @@
                 <!--Left Menu Button Area-->
                 <Border Grid.Row="1" Background="{StaticResource SecondaryBackgroundColor}" CornerRadius="0 70 0 0">
                     <!--User Avatar-->
-                    <Ellipse Width="85" Height="85" VerticalAlignment="Top" Margin=" 0 -30 35 0">
-                        <Ellipse.Fill>
-                            <ImageBrush ImageSource="{Binding UserAvatar}" Stretch="UniformToFill"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
+
+                        <Border Width="80" Height="80" CornerRadius="50" Margin="0 -40 20 0" Background="{Binding UserAvatarColor}" VerticalAlignment="Top">
+                            <TextBlock Text="{Binding UserCharacter}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="20"/>
+                        </Border>
+                        
+
                 </Border>
                 <Grid>
                     <Grid.RowDefinitions>

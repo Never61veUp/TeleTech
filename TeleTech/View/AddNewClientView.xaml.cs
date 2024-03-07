@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace TeleTech.View
 {
     /// <summary>
-    /// Логика взаимодействия для AddNewClient.xaml
+    /// Логика взаимодействия для AddNewClientView.xaml
     /// </summary>
-    public partial class AddNewClient : Window
+    public partial class AddNewClientView : UserControl
     {
-        public AddNewClient()
+        public AddNewClientView()
         {
             InitializeComponent();
         }
