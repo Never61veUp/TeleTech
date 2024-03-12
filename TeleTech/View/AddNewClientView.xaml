@@ -5,8 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TeleTech.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Background="AliceBlue">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical">
+            <TextBox Text="Имя"/>
+            <TextBox Text="Фамилия"/>
+            <TextBox Text="Отчество"/>
+            <TextBox Text="Номер паспорта"/>
+            <Button></Button>
+        </StackPanel>
     </Grid>
 </UserControl>

@@ -25,5 +25,24 @@ namespace TeleTech.Stores
         {
             CurrentViewChanged?.Invoke();
         }
+
+
+
+        public event Action? CurrentDialogChanged;
+        private ViewModelBase? _currentDialog;
+        public ViewModelBase? CurrentDialog
+        {
+            get => _currentDialog;
+            set
+            {
+                _currentDialog = value;
+                OnCurrentDialogChanged();
+            }
+        }
+
+        private void OnCurrentDialogChanged()
+        {
+            CurrentDialogChanged?.Invoke();
+        }
     }
 }

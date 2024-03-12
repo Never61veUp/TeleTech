@@ -10,21 +10,23 @@ using System.Windows.Input;
 using System.Windows.Media;
 using TeleTech.Commands;
 using TeleTech.Model;
+using TeleTech.Stores;
 using TeleTech.View;
 
 namespace TeleTech.ViewModel
 {
     internal class UsersViewModel : ViewModelBase
     {
-        public ICommand AddNewClientCommand {  get; set; }
+        public static ICommand AddNewClientCommand {  get; set; }
 
-        private ArmContext armContext = new ArmContext();
+        public ArmContext armContext = new ArmContext();
 
-        private UserExtended UserExtended = new UserExtended();
+        
 
         private List<Simissuance> simissuances;
         private List<Sim> sims;
         private List<User> users;
+        private NavigationStore _navigationStore = new NavigationStore();
 
         public string CountUsers { get; set; }
 
@@ -65,5 +67,6 @@ namespace TeleTech.ViewModel
             
             CountUsers = $"{armContext.Users.Count()} пользователей";
         }
+        
     }
 }

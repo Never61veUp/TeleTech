@@ -1,7 +1,7 @@
 ﻿using System.Windows;
+using TeleTech.Model;
 using TeleTech.Stores;
 using TeleTech.ViewModel;
-using Account = TeleTech.Model.Account;
 
 namespace TeleTech.Commands
 {
@@ -30,7 +30,7 @@ namespace TeleTech.Commands
                 if (countRecord == 1)
                 {
                     _navigationStore.CurrentView = new HomeViewModel();
-                    Account? account = new(_singInViewModel.EmployeeCode)
+                    EmployeeExtended? account = new(_singInViewModel.EmployeeCode)
                     {
                         EmployeeCode = _singInViewModel.EmployeeCode,
 

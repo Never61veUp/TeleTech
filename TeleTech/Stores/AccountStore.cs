@@ -4,8 +4,8 @@ namespace TeleTech.Stores
 {
     internal class AccountStore
     {
-        private Account _currentAccount;
-        public Account CurrentAccount
+        private EmployeeExtended _currentAccount;
+        public EmployeeExtended CurrentAccount
         {
             get => _currentAccount;
             set
