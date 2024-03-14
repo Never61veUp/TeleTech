@@ -11,7 +11,7 @@
         WindowStartupLocation="CenterScreen">
 
     <Grid Background="{StaticResource MainBackgroundColor}">
-        <Grid IsEnabled="{Binding Visibility}">
+        <Grid IsEnabled="{Binding IsAppActive}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="7*"></ColumnDefinition>
@@ -86,7 +86,7 @@
 
 
                         <!--выйти-->
-                        <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding OpenUsersPageCommand}" Grid.Row="5">
+                        <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding SingOutCommand}" Grid.Row="5">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="/Assets/Icons/logout.png" Width="25" HorizontalAlignment="Left" Margin="20"></Image>
                                 <TextBlock Text="Выйти" Style="{StaticResource LeftBarMenuItems}" VerticalAlignment="Center"></TextBlock>

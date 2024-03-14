@@ -8,10 +8,16 @@
              d:DesignHeight="450" d:DesignWidth="800" Background="AliceBlue">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Vertical">
+        <Grid Grid.Row="0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Width="20"/>
+                <Button Width="20" Content="X" Command="{Binding Close}"/>
+            </StackPanel>
+        </Grid>
+        <StackPanel Orientation="Vertical" Grid.Row="1">
             <TextBox Text="Имя"/>
             <TextBox Text="Фамилия"/>
             <TextBox Text="Отчество"/>

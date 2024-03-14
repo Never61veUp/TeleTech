@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TeleTech.ViewModel;
+﻿using TeleTech.ViewModel;
 
 namespace TeleTech.Stores
 {
@@ -44,5 +39,6 @@ namespace TeleTech.Stores
         {
             CurrentDialogChanged?.Invoke();
         }
+
     }
 }

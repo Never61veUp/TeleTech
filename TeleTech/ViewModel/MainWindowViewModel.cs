@@ -13,6 +13,7 @@ namespace TeleTech.ViewModel
         public ICommand UsersCommand { get; }
         public ICommand TariffCommand { get; }
         public ICommand SettingsCommand { get; }
+        public ICommand SingOutCommand { get; }
         #endregion
         
         public string? UserName => _accountStore.CurrentAccount?.FirstName;
@@ -24,17 +25,17 @@ namespace TeleTech.ViewModel
 
         public ViewModelBase? CurrentDialog => _navigationStore.CurrentDialog;
 
-        private bool _visibility = true;
-        public bool Visibility
+        private bool _isAppActive = true;
+        public bool IsAppActive
         {
             get
             {
-                return _visibility;
+                return _isAppActive;
             }
             set
             {
-                _visibility = value;
-                OnPropertyChanged(nameof(Visibility));
+                _isAppActive = value;
+                OnPropertyChanged(nameof(IsAppActive));
             }
         }
 
@@ -54,21 +55,21 @@ namespace TeleTech.ViewModel
             _accountStore = accountStore;
             _accountStore.CurrentAccountChanged += AccountStore_CurrentAccountChanged;
 
-            HomeCommand = new NavigationCommand<HomeViewModel>(_navigationStore, () => new HomeViewModel(), accountStore);
-            UsersCommand = new NavigationCommand<UsersViewModel>(_navigationStore, () => new UsersViewModel(), accountStore);
-            TariffCommand = new NavigationCommand<TariffViewModel>(_navigationStore, () => new TariffViewModel(), accountStore);
-            SettingsCommand = new NavigationCommand<SettingsViewModel>(_navigationStore, () => new SettingsViewModel(), accountStore);
-            //SettingsCommand = new ShowDialogCommand<AddNewClientViewModel>(_navigationStore, () => new AddNewClientViewModel());
-            UsersViewModel.AddNewClientCommand = new ShowDialogCommand<AddNewClientViewModel>(_navigationStore, () => new AddNewClientViewModel());
-
-
-
+            HomeCommand = new NavigationCommand<HomeViewModel>(_navigationStore, () => new HomeViewModel(), _accountStore);
+            UsersCommand = new NavigationCommand<UsersViewModel>(_navigationStore, () => new UsersViewModel(), _accountStore);
+            TariffCommand = new NavigationCommand<TariffViewModel>(_navigationStore, () => new TariffViewModel(), _accountStore);
+            SettingsCommand = new NavigationCommand<SettingsViewModel>(_navigationStore, () => new SettingsViewModel(), _accountStore);
+            SingOutCommand = new SingOutCommand(_navigationStore, _accountStore);
+            UsersViewModel.AddNewClientCommand = new ShowDialogCommand<AddNewClientViewModel>(_navigationStore, () => new AddNewClientViewModel(), this);
+            AddNewClientViewModel.Close = new ShowDialogCommand<AddNewClientViewModel>(_navigationStore, () => null, this);
         }
+
+
 
         private void OnCurrentDialogChanged()
         {
             OnPropertyChanged(nameof(CurrentDialog));
-            Visibility = false;
+            OnPropertyChanged(nameof(IsAppActive));
         }
 
         private void AccountStore_CurrentAccountChanged()

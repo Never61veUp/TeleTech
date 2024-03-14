@@ -24,6 +24,7 @@ namespace TeleTech.Commands
             {
                 _navigationStore.CurrentView = _createView();
             }
+            
         }
     }
 }
