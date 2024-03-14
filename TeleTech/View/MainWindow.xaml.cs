@@ -15,7 +15,7 @@ namespace TeleTech.View
         {
             DataContext = new MainWindowViewModel(navigationStore, accountStore);
             navigationStore.CurrentView = new SingInViewModel(navigationStore, accountStore);
-            
+
 
         }
     }

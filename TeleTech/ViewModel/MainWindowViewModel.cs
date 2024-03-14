@@ -15,7 +15,7 @@ namespace TeleTech.ViewModel
         public ICommand SettingsCommand { get; }
         public ICommand SingOutCommand { get; }
         #endregion
-        
+
         public string? UserName => _accountStore.CurrentAccount?.FirstName;
         public string? UserGeoStatus => _accountStore.CurrentAccount?.Location;
         public char? UserCharacter => _accountStore.CurrentAccount?.Character;
@@ -45,7 +45,7 @@ namespace TeleTech.ViewModel
 
         public MainWindowViewModel(NavigationStore navigationStore, AccountStore accountStore)
         {
-            
+
 
             _navigationStore = navigationStore;
             _navigationStore.CurrentViewChanged += OnCurrentViewChanged;

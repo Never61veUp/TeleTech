@@ -18,11 +18,17 @@
             </StackPanel>
         </Grid>
         <StackPanel Orientation="Vertical" Grid.Row="1">
-            <TextBox Text="Имя"/>
-            <TextBox Text="Фамилия"/>
-            <TextBox Text="Отчество"/>
-            <TextBox Text="Номер паспорта"/>
-            <Button></Button>
+            <TextBox Text="{Binding Name}"/>
+            <TextBox Text="{Binding SurName}"/>
+            <TextBox Text="{Binding Patronymic}"/>
+            <TextBox Text="{Binding Birthday}"/>
+            <TextBox Text="{Binding Addres}"/>
+            <TextBox Text="{Binding PassportIssueDate}"/>
+            <TextBox Text="{Binding PlaceOfPassportIssue}"/>
+            <TextBox Text="{Binding PassportId}"/>
+            <ComboBox ItemsSource="{Binding SimList}" DisplayMemberPath="Tariff" SelectedValuePath="SimcardNumber" SelectedValue="{Binding SimCardId}"/>
+            <Button Command="{Binding AddUserCommand}"></Button>
         </StackPanel>
+        
     </Grid>
 </UserControl>
