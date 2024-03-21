@@ -14,6 +14,7 @@ namespace TeleTech.Commands
 {
     internal class GetAgreementCommand : CommandBase
     {
+        //сделать относительный путь
         private string _fileName = "C:\\Users\\njab\\source\\repos\\TeleTech\\TeleTech\\Договор-оказания-услуг.doc";
         private AddNewClientViewModel _addNewClientViewModel;
         private AccountStore _accountStore;
@@ -34,7 +35,6 @@ namespace TeleTech.Commands
         }
         public override void Execute(object? parameter)
         {
-            //Microsoft.Office.Interop.Word.Application word = new Microsoft.Office.Interop.Word.Application();
             var items = new Dictionary<string, string>()
             {
                 { "CITY",  _addNewClientViewModel.Addres },
