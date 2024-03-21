@@ -60,7 +60,7 @@ namespace TeleTech.ViewModel
             TariffCommand = new NavigationCommand<TariffViewModel>(_navigationStore, () => new TariffViewModel(), _accountStore);
             SettingsCommand = new NavigationCommand<SettingsViewModel>(_navigationStore, () => new SettingsViewModel(), _accountStore);
             SingOutCommand = new SingOutCommand(_navigationStore, _accountStore);
-            UsersViewModel.AddNewClientCommand = new ShowDialogCommand<AddNewClientViewModel>(_navigationStore, () => new AddNewClientViewModel(), this);
+            UsersViewModel.AddNewClientCommand = new ShowDialogCommand<AddNewClientViewModel>(_navigationStore, () => new AddNewClientViewModel(_accountStore ), this);
             AddNewClientViewModel.Close = new ShowDialogCommand<AddNewClientViewModel>(_navigationStore, () => null, this);
         }
 

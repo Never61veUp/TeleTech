@@ -27,7 +27,8 @@
             <TextBox Text="{Binding PlaceOfPassportIssue}"/>
             <TextBox Text="{Binding PassportId}"/>
             <ComboBox ItemsSource="{Binding SimList}" DisplayMemberPath="Tariff" SelectedValuePath="SimcardNumber" SelectedValue="{Binding SimCardId}"/>
-            <Button Command="{Binding AddUserCommand}"></Button>
+            <Button Content="Зарегистрироваться" Command="{Binding AddUserCommand}"></Button>
+            <Button Content="распечатать" Command="{Binding GetAgreementCommand}"/>
         </StackPanel>
         
     </Grid>
