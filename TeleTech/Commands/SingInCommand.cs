@@ -10,11 +10,13 @@ namespace TeleTech.Commands
         private readonly NavigationStore _navigationStore;
         private readonly AccountStore _accountStore;
         private readonly SingInViewModel _singInViewModel;
+        private readonly MainWindowViewModel _mainWindowViewModel;
         public SingInCommand(NavigationStore navigationStore, AccountStore accountStore, SingInViewModel singInViewModel)
         {
             _navigationStore = navigationStore;
             _accountStore = accountStore;
             _singInViewModel = singInViewModel;
+            _mainWindowViewModel = new MainWindowViewModel(_navigationStore, _accountStore);
         }
         public override void Execute(object? parameter)
         {
@@ -36,6 +38,7 @@ namespace TeleTech.Commands
 
                     };
                     _accountStore.CurrentAccount = account;
+                    
                 }
                 else
                     MessageBox.Show("Неверные данные", "Save Error", MessageBoxButton.OK, MessageBoxImage.Error);

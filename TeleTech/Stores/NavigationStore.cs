@@ -19,6 +19,7 @@ namespace TeleTech.Stores
         private void OnCurrentViewChanged()
         {
             CurrentViewChanged?.Invoke();
+            
         }
 
 

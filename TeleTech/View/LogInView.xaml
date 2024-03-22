@@ -5,12 +5,63 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TeleTech.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             d:DesignHeight="450" d:DesignWidth="800" Background="{StaticResource MainBackgroundColor}">
     <Grid>
-        <StackPanel>
-            <TextBox  Text="{Binding EmployeeCode}"></TextBox>
-            <TextBox Text="{Binding Password}"></TextBox>
-            <Button Command="{Binding SingInCommand}"></Button>
-        </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <!--LeftBar-->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Войти" Foreground="{StaticResource MainTextColor}" FontSize="48" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <!--Rectangles-->
+            <Grid Grid.Row="0" VerticalAlignment="Bottom">
+                <StackPanel Orientation="Horizontal" Height="45" HorizontalAlignment="Center">
+                    <iconPacks:PackIconBootstrapIcons Kind="Record" Foreground="{StaticResource MainTextColor}" Width="50" VerticalAlignment="Center"/>
+                    <iconPacks:PackIconBootstrapIcons Kind="Record" Foreground="{StaticResource MainTextColor}" Width="50" VerticalAlignment="Center"/>
+                    <iconPacks:PackIconBootstrapIcons Kind="Record" Foreground="{StaticResource MainTextColor}" Width="50" VerticalAlignment="Center"/>
+                    <iconPacks:PackIconBootstrapIcons Kind="Record" Foreground="{StaticResource MainTextColor}" Width="50" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Grid>
+            
+            <!--SingIn-->
+            <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                <Grid Width="300" Height="60" HorizontalAlignment="Center">
+                    <TextBlock Margin="10 0" VerticalAlignment="Center" Foreground="{StaticResource PromptTextColor}" IsHitTestVisible="False"
+Panel.ZIndex="1" Text="Табельный номер" Visibility="{Binding ElementName=EmployeeCode, Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
+                    <TextBox x:Name="EmployeeCode" Style="{StaticResource LogInBoxes}" Text="{Binding EmployeeCode}"/>
+                </Grid>
+                <Grid Width="300" Height="60" HorizontalAlignment="Center">
+                    <TextBlock Margin="10 0" VerticalAlignment="Center" Foreground="{StaticResource PromptTextColor}" IsHitTestVisible="False"
+Panel.ZIndex="1" Text="Пароль" Visibility="{Binding ElementName=Password, Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
+                    <TextBox x:Name="Password" Style="{StaticResource LogInBoxes}" Text="{Binding Password}"/>
+                </Grid>
+            </StackPanel>
+            
+            <!--SingInButton-->
+
+            <Button Grid.Row="2" Style="{StaticResource SingInButton}" Content="Войти" Command="{Binding SingInCommand}"/>
+
+        </Grid>
+        
+        
+        
+        <!--RightBar-->
+        <Border Grid.Column="1" CornerRadius="145 0 0 100" Background="{StaticResource SecondaryBackgroundColor}">
+        </Border>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Foreground="{StaticResource MainTextColor}" Text="Добро пожаловать" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="28"/>
+            <TextBlock Grid.Row="1" Margin="0 15" Foreground="{StaticResource MainTextColor}" Text="Удачной смены и хорошего настроения!" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="22"/>
+        </Grid>
     </Grid>
 </UserControl>

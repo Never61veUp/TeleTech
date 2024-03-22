@@ -28,16 +28,24 @@ namespace TeleTech.ViewModel
         private bool _isAppActive = true;
         public bool IsAppActive
         {
-            get
-            {
-                return _isAppActive;
-            }
+            get { return _isAppActive; }
             set
             {
                 _isAppActive = value;
                 OnPropertyChanged(nameof(IsAppActive));
             }
         }
+        private bool _isLeftBarVisible = false;
+        public bool IsLeftBarVisible
+        {
+            get { return _isLeftBarVisible; }
+            set
+            {
+                _isLeftBarVisible = value;
+                OnPropertyChanged(nameof(IsLeftBarVisible));
+            }
+        }
+
 
 
         private readonly NavigationStore _navigationStore;
@@ -78,6 +86,10 @@ namespace TeleTech.ViewModel
             OnPropertyChanged(nameof(UserGeoStatus));
             OnPropertyChanged(nameof(UserCharacter));
             OnPropertyChanged(nameof(UserAvatarColor));
+            if (_accountStore.CurrentAccount != null)
+                IsLeftBarVisible = true;
+            else 
+                IsLeftBarVisible = false;
         }
 
         private void OnCurrentViewChanged()

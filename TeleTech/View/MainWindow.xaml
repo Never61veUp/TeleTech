@@ -28,7 +28,7 @@
                         <Image Source="/Assets/Icons/Mask group.png" Height="30"></Image>
                     </Button>
                 </Grid>
-                <Grid Grid.Row="1">
+                <Grid Grid.Row="1" Visibility="{Binding IsLeftBarVisible,Converter={StaticResource BoolToVis}}">
                     <!--Left Menu Button Area-->
                     <Border Grid.Row="1" Background="{StaticResource SecondaryBackgroundColor}" CornerRadius="0 70 0 0">
                         <!--User Avatar-->
