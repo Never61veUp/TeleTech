@@ -3,6 +3,7 @@ using System.Windows.Input;
 using TeleTech.Commands;
 using TeleTech.Stores;
 using TeleTech.View;
+using System.Windows;
 
 namespace TeleTech.ViewModel
 {
@@ -14,6 +15,7 @@ namespace TeleTech.ViewModel
         public ICommand TariffCommand { get; }
         public ICommand SettingsCommand { get; }
         public ICommand SingOutCommand { get; }
+        public ICommand CloseDialogWindowCommand { get; }
         #endregion
 
         public string? UserName => _accountStore.CurrentAccount?.FirstName;
@@ -45,6 +47,16 @@ namespace TeleTech.ViewModel
                 OnPropertyChanged(nameof(IsLeftBarVisible));
             }
         }
+        private Visibility _isDialogOpen = Visibility.Collapsed;
+        public Visibility IsDialogOpen
+        {
+            get { return _isDialogOpen; }
+            set
+            {
+                _isDialogOpen = value;
+                OnPropertyChanged(nameof(IsDialogOpen));
+            }
+        }
 
 
 
@@ -64,12 +76,13 @@ namespace TeleTech.ViewModel
             _accountStore.CurrentAccountChanged += AccountStore_CurrentAccountChanged;
 
             HomeCommand = new NavigationCommand<HomeViewModel>(_navigationStore, () => new HomeViewModel(), _accountStore);
-            UsersCommand = new NavigationCommand<UsersViewModel>(_navigationStore, () => new UsersViewModel(), _accountStore);
+            UsersCommand = new NavigationCommand<UsersViewModel>(_navigationStore, () => new UsersViewModel(_navigationStore, _accountStore, this), _accountStore);
             TariffCommand = new NavigationCommand<TariffViewModel>(_navigationStore, () => new TariffViewModel(), _accountStore);
             SettingsCommand = new NavigationCommand<SettingsViewModel>(_navigationStore, () => new SettingsViewModel(), _accountStore);
             SingOutCommand = new SingOutCommand(_navigationStore, _accountStore);
+            
             UsersViewModel.AddNewClientCommand = new ShowDialogCommand<AddNewClientViewModel>(_navigationStore, () => new AddNewClientViewModel(_accountStore ), this);
-            AddNewClientViewModel.Close = new ShowDialogCommand<AddNewClientViewModel>(_navigationStore, () => null, this);
+            CloseDialogWindowCommand = new ShowDialogCommand<AddNewClientViewModel>(_navigationStore, () => null, this);
         }
 
 
@@ -79,10 +92,16 @@ namespace TeleTech.ViewModel
             if(_navigationStore.CurrentDialog != null)
             {
                 IsAppActive = false;
+                IsDialogOpen = Visibility.Visible;
+
             }
             else
-                IsAppActive= true;
-            OnPropertyChanged(nameof(IsAppActive));
+            {
+                IsAppActive = true;
+                IsDialogOpen = Visibility.Collapsed;
+            }
+                
+            
             OnPropertyChanged(nameof(CurrentDialog));
             
         }
@@ -95,6 +114,7 @@ namespace TeleTech.ViewModel
             OnPropertyChanged(nameof(UserAvatarColor));
             if (_accountStore.CurrentAccount != null)
                 IsLeftBarVisible = true;
+
             else
                 IsLeftBarVisible = false;
         }

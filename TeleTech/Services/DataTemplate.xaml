@@ -23,5 +23,8 @@
     <DataTemplate DataType="{x:Type vm:AddNewClientViewModel}">
         <view:AddNewClientView />
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:EditUserViewModel}">
+        <view:EditUserView />
+    </DataTemplate>
     <BooleanToVisibilityConverter x:Key="BoolToVis"/>
 </ResourceDictionary>

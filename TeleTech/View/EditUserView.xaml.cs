@@ -24,5 +24,7 @@ namespace TeleTech.View
         {
             InitializeComponent();
         }
+
+        
     }
 }

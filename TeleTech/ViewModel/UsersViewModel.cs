@@ -18,6 +18,7 @@ namespace TeleTech.ViewModel
     internal class UsersViewModel : ViewModelBase
     {
         public static ICommand AddNewClientCommand { get; set; }
+        public static ICommand EditUserCommand { get; set; } 
 
         public ArmContext armContext = new ArmContext();
 
@@ -26,16 +27,33 @@ namespace TeleTech.ViewModel
         private List<Simissuance> simissuances;
         private List<Sim> sims;
         private List<User> users;
-        private NavigationStore _navigationStore = new NavigationStore();
+        private NavigationStore _navigationStore;
+        private AccountStore _accountStore;
+        private MainWindowViewModel _mainWindowViewModel;
 
         public string CountUsers { get; set; }
+        private int _activeUserId;
+        public int activeUserId
+        {
+            get { return _activeUserId; }
+            set
+            {
+                _activeUserId = value;
+                OnPropertyChanged(nameof(activeUserId));
+            }
+        }
+            
 
         public List<UserExtended> UsersWithSIMs { get; set; }
 
 
-        public UsersViewModel()
+        public UsersViewModel(NavigationStore navigationStore, AccountStore accountStore, MainWindowViewModel mainWindowViewModel)
         {
-
+            
+            _navigationStore = navigationStore;
+            _accountStore =  accountStore;
+            _mainWindowViewModel = mainWindowViewModel;
+            EditUserCommand = new ShowDialogCommand<EditUserViewModel>(_navigationStore, () => new EditUserViewModel(activeUserId), _mainWindowViewModel);
             users = armContext.Users.ToList();
             simissuances = armContext.Simissuances.ToList();
             sims = armContext.Sims.ToList();

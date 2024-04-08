@@ -5,60 +5,55 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TeleTech.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Background="AliceBlue">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="20"></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Width="20" Content="X" Command="{Binding Close}"/>
-            </StackPanel>
-        </Grid>
-        <StackPanel Orientation="Vertical" Grid.Row="1">
+        
+        
+        <StackPanel Orientation="Vertical">
             <Grid Grid.Row="1" HorizontalAlignment="Center" Width="300" Height="40">
                 <TextBlock Margin="10 0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
 Panel.ZIndex="1" Text="Имя" Visibility="{Binding ElementName=Name, Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
-                <TextBox x:Name="Name" Style="{StaticResource SearchBox}" Height="30"/>
+                <TextBox x:Name="Name" Text="{Binding Name}" Style="{StaticResource SearchBox}" Height="30"/>
             </Grid>
             <Grid Grid.Row="1" Width="300" Height="40" HorizontalAlignment="Center">
                 <TextBlock Margin="10 0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
 Panel.ZIndex="1" Text="Фамилия" Visibility="{Binding ElementName=SurName, Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
-                <TextBox x:Name="SurName" Style="{StaticResource SearchBox}" Height="30"/>
+                <TextBox x:Name="SurName" Text="{Binding SurName}" Style="{StaticResource SearchBox}" Height="30"/>
             </Grid>
             <Grid Grid.Row="2" Width="300" Height="40" HorizontalAlignment="Center">
                 <TextBlock Margin="10 0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
-Panel.ZIndex="1" Text="Отчество" Visibility="{Binding ElementName=Patronomic, Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
-                <TextBox x:Name="Patronomic" Style="{StaticResource SearchBox}" Height="30"/>
+Panel.ZIndex="1" Text="Отчество" Visibility="{Binding ElementName=Patronymic, Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
+                <TextBox x:Name="Patronymic" Text="{Binding Patronymic}" Style="{StaticResource SearchBox}" Height="30"/>
             </Grid>
             <Grid Grid.Row="2" Width="300" Height="40" HorizontalAlignment="Center">
                 <TextBlock Margin="10 0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
 Panel.ZIndex="1" Text="Дата рождения" Visibility="{Binding ElementName=BirthDay, Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
-                <TextBox x:Name="BirthDay" Style="{StaticResource SearchBox}" Height="30"/>
+                <TextBox x:Name="BirthDay" Text="{Binding Birthday}" Style="{StaticResource SearchBox}" Height="30"/>
             </Grid>
             <Grid Grid.Row="2" Width="300" Height="40" HorizontalAlignment="Center">
                 <TextBlock Margin="10 0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
 Panel.ZIndex="1" Text="Адрес" Visibility="{Binding ElementName=Address, Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
-                <TextBox x:Name="Address" Style="{StaticResource SearchBox}" Height="30"/>
+                <TextBox x:Name="Address" Text="{Binding Address}" Style="{StaticResource SearchBox}" Height="30"/>
             </Grid>
             <Grid Grid.Row="2" Width="300" Height="40" HorizontalAlignment="Center">
                 <TextBlock Margin="10 0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
 Panel.ZIndex="1" Text="Номер пасспорта" Visibility="{Binding ElementName=PassportId, Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
-                <TextBox x:Name="PassportId" Style="{StaticResource SearchBox}" Height="30"/>
+                <TextBox x:Name="PassportId" Text="{Binding PassportId}" Style="{StaticResource SearchBox}" Height="30"/>
             </Grid>
             <Grid Grid.Row="2" Width="300" Height="40" HorizontalAlignment="Center">
                 <TextBlock Margin="10 0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
 Panel.ZIndex="1" Text="Дата выдачи пасспорта" Visibility="{Binding ElementName=PassportIssueDate, Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
-                <TextBox x:Name="PassportIssueDate" Style="{StaticResource SearchBox}" Height="30"/>
+                <TextBox x:Name="PassportIssueDate" Text="{Binding PassportIssueDate}" Style="{StaticResource SearchBox}" Height="30"/>
             </Grid>
             <Grid Grid.Row="2" Width="300" Height="40" HorizontalAlignment="Center">
                 <TextBlock Margin="10 0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
 Panel.ZIndex="1" Text="Место выдачи паспорта" Visibility="{Binding ElementName=PlaceOfPassportIssue, Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
-                <TextBox x:Name="PlaceOfPassportIssue" Style="{StaticResource SearchBox}" Height="30"/>
+                <TextBox x:Name="PlaceOfPassportIssue" Text="{Binding PlaceOfPassportIssue}" Style="{StaticResource SearchBox}" Height="30"/>
             </Grid>
-            <ComboBox Height="30" Width="300" ItemsSource="{Binding SimList}" DisplayMemberPath="Tariff" SelectedValuePath="SimcardNumber" SelectedValue="{Binding SimCardId}"/>
-            <Button Content="Зарегистрироваться" Command="{Binding AddUserCommand}"></Button>
+            
+            <ComboBox Height="30" Width="300" ItemsSource="{Binding SimList}" DisplayMemberPath="Tariff" 
+                      SelectedValuePath="SimcardNumber" SelectedValue="{Binding SimCardId}"/>
+            <Button Content="Изменить" Command="{Binding SaveUserEditChanges}"></Button>
             <Button Content="распечатать" Command="{Binding GetAgreementCommand}"/>
         </StackPanel>
 

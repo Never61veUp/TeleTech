@@ -7,7 +7,7 @@
              xmlns:Menu="clr-namespace:TeleTech.Services"
              mc:Ignorable="d" 
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-             d:DesignHeight="450" d:DesignWidth="800" Background="{StaticResource MainBackgroundColor}">
+             d:DesignHeight="450" d:DesignWidth="800" Background="{StaticResource MainBackgroundColor}" x:Name="ThisWindow">
     <Grid>
 
         <Grid.ColumnDefinitions>
@@ -54,7 +54,7 @@
             </Grid>
             <DataGrid Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" 
                       ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" Grid.Row="3" RowStyle="{StaticResource DataGridRowStyle}" 
-                      ItemsSource="{Binding UsersWithSIMs}" x:Name="UsersDataGrid">
+                      ItemsSource="{Binding UsersWithSIMs}" SelectedValuePath="Id" SelectedValue="{Binding activeUserId}" x:Name="UsersDataGrid" SelectedItem="{Binding activeUserId}">
                 <DataGrid.Columns >
                     <DataGridCheckBoxColumn CanUserResize="False" Width="auto">
                         <DataGridCheckBoxColumn.HeaderTemplate>
@@ -97,7 +97,8 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Style="{StaticResource GridEditButton}">
+                                    <Button Style="{StaticResource GridEditButton}" Command="{Binding ElementName=ThisWindow, 
+                                        Path=DataContext.EditUserCommand}">
                                         <iconPacks:Modern Kind="Edit"/>
                                     </Button>
                                     <Button Style="{StaticResource GridDeleteButton}" Margin="8 0">

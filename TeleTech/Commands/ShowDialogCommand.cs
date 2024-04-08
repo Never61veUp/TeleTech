@@ -17,11 +17,23 @@ namespace TeleTech.Commands
         }
         public override void Execute(object? parameter)
         {
-            _navigationStore.CurrentDialog = _createDialog();
-            if (_createDialog() != null)
-                _mainWindowViewModel.IsAppActive = false;
-            else
-                _mainWindowViewModel.IsAppActive = true;
+            //if(parameter != null)
+            //{
+            //    _navigationStore.CurrentDialog = _createDialog(parameter);
+            //    if (_createDialog() != null)
+            //        _mainWindowViewModel.IsAppActive = false;
+            //    else
+            //        _mainWindowViewModel.IsAppActive = true;
+            ////}
+            //else
+            //{
+                _navigationStore.CurrentDialog = _createDialog();
+                if (_createDialog() != null)
+                    _mainWindowViewModel.IsAppActive = false;
+                else
+                    _mainWindowViewModel.IsAppActive = true;
+            //}
+            
 
         }
     }
