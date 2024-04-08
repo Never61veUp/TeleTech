@@ -44,7 +44,7 @@ namespace TeleTech.ViewModel
         public AddNewClientViewModel(AccountStore accountStore)
         {
             _accountStore = accountStore;
-            GetAgreementCommand = new GetAgreementCommand(this, _accountStore);
+            //GetAgreementCommand = new GetAgreementCommand(this, _accountStore);
             SimList = Context.Sims.Where(x => x.IsStock == true).ToList();
             AddUserCommand = new AddUserCommand(this);
         }

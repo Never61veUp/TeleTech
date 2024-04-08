@@ -26,7 +26,7 @@ namespace TeleTech.ViewModel
         public ViewModelBase? CurrentDialog => _navigationStore.CurrentDialog;
 
         private bool _isAppActive = true;
-        public bool IsAppActive
+        public bool IsAppActive 
         {
             get { return _isAppActive; }
             set
@@ -35,7 +35,7 @@ namespace TeleTech.ViewModel
                 OnPropertyChanged(nameof(IsAppActive));
             }
         }
-        private bool _isLeftBarVisible = false;
+        private bool _isLeftBarVisible;
         public bool IsLeftBarVisible
         {
             get { return _isLeftBarVisible; }
@@ -53,7 +53,7 @@ namespace TeleTech.ViewModel
 
         public MainWindowViewModel(NavigationStore navigationStore, AccountStore accountStore)
         {
-
+            
 
             _navigationStore = navigationStore;
             _navigationStore.CurrentViewChanged += OnCurrentViewChanged;
@@ -76,8 +76,15 @@ namespace TeleTech.ViewModel
 
         private void OnCurrentDialogChanged()
         {
-            OnPropertyChanged(nameof(CurrentDialog));
+            if(_navigationStore.CurrentDialog != null)
+            {
+                IsAppActive = false;
+            }
+            else
+                IsAppActive= true;
             OnPropertyChanged(nameof(IsAppActive));
+            OnPropertyChanged(nameof(CurrentDialog));
+            
         }
 
         private void AccountStore_CurrentAccountChanged()
@@ -88,7 +95,7 @@ namespace TeleTech.ViewModel
             OnPropertyChanged(nameof(UserAvatarColor));
             if (_accountStore.CurrentAccount != null)
                 IsLeftBarVisible = true;
-            else 
+            else
                 IsLeftBarVisible = false;
         }
 
