@@ -16,15 +16,13 @@ using System.Windows.Shapes;
 namespace TeleTech.View
 {
     /// <summary>
-    /// Логика взаимодействия для AddNewClientView.xaml
+    /// Логика взаимодействия для EditUserView.xaml
     /// </summary>
-    public partial class AddNewClientView : UserControl
+    public partial class EditUserView : UserControl
     {
-        public AddNewClientView()
+        public EditUserView()
         {
             InitializeComponent();
         }
-
-        
     }
 }

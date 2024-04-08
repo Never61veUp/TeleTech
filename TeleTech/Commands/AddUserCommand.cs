@@ -10,7 +10,7 @@ namespace TeleTech.Commands
         private readonly AddNewClientViewModel _addNewClientViewModel;
         public override void Execute(object? parameter)
         {
-            Sim sim = armContext.Sims.FirstOrDefault(s => s.SimcardNumber == _addNewClientViewModel.SimCardId);
+            var sim = armContext.Sims.Where(s => s.SimcardNumber == _addNewClientViewModel.SimCardId).FirstOrDefault();
 
             User newUser = new User()
             {
@@ -18,7 +18,7 @@ namespace TeleTech.Commands
                 Surname = _addNewClientViewModel.SurName,
                 Patronymic = _addNewClientViewModel.Patronymic,
                 Birthday = _addNewClientViewModel.Birthday,
-                Address = _addNewClientViewModel.Addres,
+                Address = _addNewClientViewModel.Address,
                 PassportIssueDate = _addNewClientViewModel.PassportIssueDate,
                 PlaceOfPassportIssue = _addNewClientViewModel.PlaceOfPassportIssue,
                 PassportId = _addNewClientViewModel.PassportId,
@@ -36,19 +36,44 @@ namespace TeleTech.Commands
 
 
             };
-            armContext.Users.Add(newUser);
-            armContext.SaveChanges();
-            armContext.Simissuances.Add(newSimissuance);
-            armContext.SaveChanges();
-            sim.IsStock = false;
-            armContext.SaveChanges();
-            if (armContext.SaveChanges() == 0)
+            try
             {
+                armContext.Users.Add(newUser);
+                armContext.SaveChanges();
+                if(armContext.SaveChanges() == 0)
+                {
+                    armContext.Simissuances.Add(newSimissuance);
+                    armContext.SaveChanges();
+                    if(armContext.SaveChanges() == 0)
+                    {
+                        sim.IsStock = false; 
+                        armContext.SaveChanges();
+                        MessageBox.Show("Регистрация успешна", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        armContext.Users.Remove(newUser);
+                        armContext.SaveChanges(true);
+                        if(armContext.SaveChanges() == 0)
+                        {
+                            MessageBox.Show("Регистрация не успешна");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Регистрация все сломала");
+                        }
+                    }
 
-                MessageBox.Show("Регистрация успешна", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
-
-
+                }
             }
+            catch
+            {
+                throw new Exception("Add New User Exception");
+            }
+            
+            
+            
+            
         }
         public AddUserCommand(AddNewClientViewModel addNewClientViewModel)
         {
