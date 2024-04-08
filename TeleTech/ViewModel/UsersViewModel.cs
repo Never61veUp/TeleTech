@@ -58,29 +58,25 @@ namespace TeleTech.ViewModel
             simissuances = armContext.Simissuances.ToList();
             sims = armContext.Sims.ToList();
 
-            var combinedData = (from u in armContext.Users
-                                join si in armContext.Simissuances on u.PassportId equals si.PassportNumber
-                                join s in armContext.Sims on si.SimcardNumber equals s.SimcardNumber
+            var combinedData = (from user in armContext.Users
+                                join simIssuance in armContext.Simissuances on user.PassportId equals simIssuance.PassportNumber
+                                into temp
+                                from subSi in temp.DefaultIfEmpty()
+                                join s in armContext.Sims on subSi.SimcardNumber equals s.SimcardNumber into temp2
+                                from subS in temp2.DefaultIfEmpty()
                                 select new UserExtended
                                 {
-                                    Name = $"{u.Surname} {u.Name[0]}.{u.Patronymic[0]}.",
-                                    Character = u.Name[0],
-                                    Id = u.Id,
-                                    PassportId = u.PassportId,
-                                    SimCardNumber = si.SimcardNumber,
-                                    Tariff = s.Tariff,
-                                    BgColor = UserExtended.ChooseColor(u.Name[0]),
-                                    Birthday = u.Birthday,
-                                    Address = u.Address,
-
-
-
+                                    Name = $"{user.Surname} {user.Name[0]}.{user.Patronymic[0]}.",
+                                    Character = user.Name[0],
+                                    Id = user.Id,
+                                    PassportId = user.PassportId,
+                                    SimCardNumber = subSi != null ? subSi.SimcardNumber : null,
+                                    Tariff = subS != null ? subS.Tariff : null,
+                                    BgColor = UserExtended.ChooseColor(user.Name[0]),
+                                    Birthday = user.Birthday,
+                                    Address = user.Address,
                                 }).ToList();
-            //legacy :)
-            //var userSims = from user in users
-            //               join sim in simissuances on user.PassportId equals sim.PassportNumber
-            //               select new UserExtended { Name = user.Name, SimCardNumber = sim.SimcardNumber, PassportId = user.PassportId, Id = user.Id, Tariff = sim.};
-
+            
             UsersWithSIMs = combinedData.ToList();
 
             CountUsers = $"{armContext.Users.Count()} пользователей";
