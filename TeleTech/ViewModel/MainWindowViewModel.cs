@@ -1,9 +1,8 @@
-﻿using System.Windows.Media;
+﻿using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using TeleTech.Commands;
 using TeleTech.Stores;
-using TeleTech.View;
-using System.Windows;
 
 namespace TeleTech.ViewModel
 {
@@ -28,7 +27,7 @@ namespace TeleTech.ViewModel
         public ViewModelBase? CurrentDialog => _navigationStore.CurrentDialog;
 
         private bool _isAppActive = true;
-        public bool IsAppActive 
+        public bool IsAppActive
         {
             get { return _isAppActive; }
             set
@@ -65,7 +64,7 @@ namespace TeleTech.ViewModel
 
         public MainWindowViewModel(NavigationStore navigationStore, AccountStore accountStore)
         {
-            
+
 
             _navigationStore = navigationStore;
             _navigationStore.CurrentViewChanged += OnCurrentViewChanged;
@@ -80,8 +79,8 @@ namespace TeleTech.ViewModel
             TariffCommand = new NavigationCommand<TariffViewModel>(_navigationStore, () => new TariffViewModel(), _accountStore);
             SettingsCommand = new NavigationCommand<SettingsViewModel>(_navigationStore, () => new SettingsViewModel(), _accountStore);
             SingOutCommand = new SingOutCommand(_navigationStore, _accountStore);
-            
-            UsersViewModel.AddNewClientCommand = new ShowDialogCommand<AddNewClientViewModel>(_navigationStore, () => new AddNewClientViewModel(_accountStore ), this);
+
+            UsersViewModel.AddNewClientCommand = new ShowDialogCommand<AddNewClientViewModel>(_navigationStore, () => new AddNewClientViewModel(_accountStore), this);
             CloseDialogWindowCommand = new ShowDialogCommand<AddNewClientViewModel>(_navigationStore, () => null, this);
         }
 
@@ -89,7 +88,7 @@ namespace TeleTech.ViewModel
 
         private void OnCurrentDialogChanged()
         {
-            if(_navigationStore.CurrentDialog != null)
+            if (_navigationStore.CurrentDialog != null)
             {
                 IsAppActive = false;
                 IsDialogOpen = Visibility.Visible;
@@ -100,10 +99,10 @@ namespace TeleTech.ViewModel
                 IsAppActive = true;
                 IsDialogOpen = Visibility.Collapsed;
             }
-                
-            
+
+
             OnPropertyChanged(nameof(CurrentDialog));
-            
+
         }
 
         private void AccountStore_CurrentAccountChanged()

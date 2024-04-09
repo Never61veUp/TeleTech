@@ -1,10 +1,4 @@
-﻿using Microsoft.Identity.Client.NativeInterop;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using TeleTech.Commands;
 using TeleTech.Model;
 using TeleTech.Stores;
@@ -34,7 +28,7 @@ namespace TeleTech.ViewModel
 
         #endregion
 
-
+        public User users { get; set; } = new User();
 
 
 
@@ -44,7 +38,8 @@ namespace TeleTech.ViewModel
         public AddNewClientViewModel(AccountStore accountStore)
         {
             _accountStore = accountStore;
-            //GetAgreementCommand = new GetAgreementCommand(this, _accountStore);
+
+            GetAgreementCommand = new GetAgreementCommand(users);
             SimList = Context.Sims.Where(x => x.IsStock == true).ToList();
             AddUserCommand = new AddUserCommand(this);
         }

@@ -38,7 +38,7 @@ namespace TeleTech.Commands
 
                     };
                     _accountStore.CurrentAccount = account;
-                    
+
                 }
                 else
                     MessageBox.Show("Неверные данные", "Save Error", MessageBoxButton.OK, MessageBoxImage.Error);

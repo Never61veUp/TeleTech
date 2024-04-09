@@ -1,8 +1,4 @@
-﻿using System.Configuration;
-using System.Data;
-using System.Windows;
-using TeleTech.View;
-using TeleTech.ViewModel;
+﻿using System.Windows;
 
 namespace TeleTech
 {

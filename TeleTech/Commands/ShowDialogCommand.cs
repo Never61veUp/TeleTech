@@ -27,14 +27,15 @@ namespace TeleTech.Commands
             ////}
             //else
             //{
-                _navigationStore.CurrentDialog = _createDialog();
-                if (_createDialog() != null)
-                    _mainWindowViewModel.IsAppActive = false;
-                else
-                    _mainWindowViewModel.IsAppActive = true;
+            _navigationStore.CurrentDialog = _createDialog();
+            if (_createDialog() != null)
+                _mainWindowViewModel.IsAppActive = false;
+            else
+                _mainWindowViewModel.IsAppActive = true;
             //}
-            
+
 
         }
+        
     }
 }

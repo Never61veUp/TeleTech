@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TeleTech.Stores;
+﻿using TeleTech.Stores;
 using TeleTech.ViewModel;
 
 namespace TeleTech.Commands

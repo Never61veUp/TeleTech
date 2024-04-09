@@ -40,13 +40,13 @@ namespace TeleTech.Commands
             {
                 armContext.Users.Add(newUser);
                 armContext.SaveChanges();
-                if(armContext.SaveChanges() == 0)
+                if (armContext.SaveChanges() == 0)
                 {
                     armContext.Simissuances.Add(newSimissuance);
                     armContext.SaveChanges();
-                    if(armContext.SaveChanges() == 0)
+                    if (armContext.SaveChanges() == 0)
                     {
-                        sim.IsStock = false; 
+                        sim.IsStock = false;
                         armContext.SaveChanges();
                         MessageBox.Show("Регистрация успешна", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
@@ -54,7 +54,7 @@ namespace TeleTech.Commands
                     {
                         armContext.Users.Remove(newUser);
                         armContext.SaveChanges(true);
-                        if(armContext.SaveChanges() == 0)
+                        if (armContext.SaveChanges() == 0)
                         {
                             MessageBox.Show("Регистрация не успешна");
                         }
@@ -70,10 +70,10 @@ namespace TeleTech.Commands
             {
                 throw new Exception("Add New User Exception");
             }
-            
-            
-            
-            
+
+
+
+
         }
         public AddUserCommand(AddNewClientViewModel addNewClientViewModel)
         {

@@ -1,24 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.Intrinsics.Arm;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using System.Windows.Media;
+﻿using System.Windows.Input;
 using TeleTech.Commands;
 using TeleTech.Model;
 using TeleTech.Stores;
-using TeleTech.View;
 
 namespace TeleTech.ViewModel
 {
     internal class UsersViewModel : ViewModelBase
     {
         public static ICommand AddNewClientCommand { get; set; }
-        public static ICommand EditUserCommand { get; set; } 
+        public static ICommand EditUserCommand { get; set; }
 
         public ArmContext armContext = new ArmContext();
 
@@ -42,16 +32,17 @@ namespace TeleTech.ViewModel
                 OnPropertyChanged(nameof(activeUserId));
             }
         }
-            
+
 
         public List<UserExtended> UsersWithSIMs { get; set; }
 
+        //TODO: Убрать майнвбю модел
 
         public UsersViewModel(NavigationStore navigationStore, AccountStore accountStore, MainWindowViewModel mainWindowViewModel)
         {
-            
+
             _navigationStore = navigationStore;
-            _accountStore =  accountStore;
+            _accountStore = accountStore;
             _mainWindowViewModel = mainWindowViewModel;
             EditUserCommand = new ShowDialogCommand<EditUserViewModel>(_navigationStore, () => new EditUserViewModel(activeUserId), _mainWindowViewModel);
             users = armContext.Users.ToList();
@@ -76,7 +67,7 @@ namespace TeleTech.ViewModel
                                     Birthday = user.Birthday,
                                     Address = user.Address,
                                 }).ToList();
-            
+
             UsersWithSIMs = combinedData.ToList();
 
             CountUsers = $"{armContext.Users.Count()} пользователей";

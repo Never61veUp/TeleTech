@@ -19,7 +19,7 @@ namespace TeleTech.Stores
         private void OnCurrentViewChanged()
         {
             CurrentViewChanged?.Invoke();
-            
+
         }
 
 
@@ -40,6 +40,7 @@ namespace TeleTech.Stores
         {
             CurrentDialogChanged?.Invoke();
         }
+     
 
     }
 }

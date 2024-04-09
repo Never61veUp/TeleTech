@@ -1,36 +1,87 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows;
 using TeleTech.Model;
-using TeleTech.ViewModel;
 
 namespace TeleTech.Commands
 {
     internal class EditUserCommand : CommandBase
     {
         private ArmContext armContext = new ArmContext();
-        private EditUserViewModel _editUserViewModel;
+        private User _userWithChanges;
+        private int _idUser;
+        private User _users;
         public override void Execute(object? parameter)
         {
-            _editUserViewModel.users.Name = _editUserViewModel.Name;
-            _editUserViewModel.users.Surname = _editUserViewModel.SurName;
-            _editUserViewModel.users.Patronymic = _editUserViewModel.Patronymic;
-            _editUserViewModel.users.Birthday = _editUserViewModel.Birthday;
-            _editUserViewModel.users.Address = _editUserViewModel.Address;
-            _editUserViewModel.users.PassportIssueDate = _editUserViewModel.PassportIssueDate;
-            _editUserViewModel.users.PlaceOfPassportIssue = _editUserViewModel.PlaceOfPassportIssue;
-            _editUserViewModel.armContext.SaveChanges();   
-            if(armContext.SaveChanges() == 0)
+            using (var transaction = armContext.Database.BeginTransaction())
             {
-                MessageBox.Show("d");
+                try
+                {
+                    _users = armContext.Users.Where(x => x.Id == _idUser).FirstOrDefault();
+
+                    var Simissuances = armContext.Simissuances.Where(x => x.PassportNumber == _users.PassportId).ToList();
+
+                    armContext.Users.Remove(_users);
+
+                    User newUser = new User
+                    {
+                        Name = _userWithChanges.Name,
+                        Surname = _userWithChanges.Surname,
+                        Patronymic = _userWithChanges.Patronymic,
+                        Birthday = _userWithChanges.Birthday,
+                        Address = _userWithChanges.Address,
+                        PassportId = _userWithChanges.PassportId,
+                        PassportIssueDate = _userWithChanges.PassportIssueDate,
+                        PlaceOfPassportIssue = _userWithChanges.PlaceOfPassportIssue,
+                        AccountStatus = _userWithChanges.AccountStatus
+                    };
+
+
+                    foreach (var item in Simissuances)
+                    {
+                        var simCardNumberOld = item.SimcardNumber;
+
+                        var issueDateOld = item.IssueDate;
+                        var expiryDateOld = item.ExpiryDate;
+
+                        armContext.Simissuances.Remove(item);
+
+                        Simissuance newSimissuance = new Simissuance
+                        {
+                            SimcardNumber = simCardNumberOld,
+                            PassportNumber = _userWithChanges.PassportId,
+                            IssueDate = issueDateOld,
+                            ExpiryDate = expiryDateOld
+
+                        };
+                        armContext.Add(newSimissuance);
+                    }
+                    armContext.Users.Add(newUser);
+                    armContext.SaveChanges();
+                    if (armContext.SaveChanges() == 0)
+                    {
+                        MessageBox.Show("Успешное изменеие.", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+
+                    transaction.Commit();
+
+
+                }
+                catch (Exception ex)
+                {
+                    // Если произошло исключение, откатываем транзакцию
+                    transaction.Rollback();
+                    MessageBox.Show($"Произошло исключение: {ex.Message}");
+                }
             }
+
+
+
+
+
         }
-        public EditUserCommand(EditUserViewModel editUserViewModel)
+        public EditUserCommand(User userWithChanges, int idUser)
         {
-            _editUserViewModel = editUserViewModel;
+            _userWithChanges = userWithChanges;
+            _idUser = idUser;
         }
     }
 }
