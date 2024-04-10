@@ -75,7 +75,7 @@ namespace TeleTech.ViewModel
             _accountStore.CurrentAccountChanged += AccountStore_CurrentAccountChanged;
 
             HomeCommand = new NavigationCommand<HomeViewModel>(_navigationStore, () => new HomeViewModel(), _accountStore);
-            UsersCommand = new NavigationCommand<UsersViewModel>(_navigationStore, () => new UsersViewModel(_navigationStore, _accountStore, this), _accountStore);
+            UsersCommand = new NavigationCommand<UsersViewModel>(_navigationStore, () => new UsersViewModel(_navigationStore, _accountStore), _accountStore);
             TariffCommand = new NavigationCommand<TariffViewModel>(_navigationStore, () => new TariffViewModel(), _accountStore);
             SettingsCommand = new NavigationCommand<SettingsViewModel>(_navigationStore, () => new SettingsViewModel(), _accountStore);
             SingOutCommand = new SingOutCommand(_navigationStore, _accountStore);

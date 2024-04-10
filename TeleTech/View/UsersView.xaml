@@ -45,12 +45,13 @@
                 </Menu:Btn>
             </StackPanel>
             <TextBlock Grid.Row="2" Text="{Binding CountUsers}" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="2" Text="Фильтр" HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Center" Margin="0 0 210 0"/>
+            <TextBlock Grid.Row="2" Text="Фильтр" HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Center" 
+                       Margin="0 0 210 0"/>
             <!--Search TextBox-->
             <Grid Grid.Row="2" Width="200" HorizontalAlignment="Right">
                 <TextBlock Margin="10 0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
    Panel.ZIndex="1" Text="Поиск.." Visibility="{Binding ElementName=Search, Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
-                <TextBox x:Name="Search" Style="{StaticResource SearchBox}" Height="20"/>
+                <TextBox x:Name="Search" Style="{StaticResource SearchBox}" Height="20" Text="{Binding FilterText, Mode=TwoWay}"/>
             </Grid>
             <DataGrid Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" 
                       ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" Grid.Row="3" RowStyle="{StaticResource DataGridRowStyle}" 
