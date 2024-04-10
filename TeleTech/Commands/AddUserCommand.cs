@@ -7,30 +7,32 @@ namespace TeleTech.Commands
     internal class AddUserCommand : CommandBase
     {
         public ArmContext armContext = new ArmContext();
-        private readonly AddNewClientViewModel _addNewClientViewModel;
+        private User _newUser;
+        private Sim _selectedSimCard;
+
         public override void Execute(object? parameter)
         {
-            var sim = armContext.Sims.Where(s => s.SimcardNumber == _addNewClientViewModel.SimCardId).FirstOrDefault();
+            var sim = armContext.Sims.Where(s => s.SimcardNumber == _selectedSimCard.SimcardNumber).FirstOrDefault();
 
             User newUser = new User()
             {
-                Name = _addNewClientViewModel.Name,
-                Surname = _addNewClientViewModel.SurName,
-                Patronymic = _addNewClientViewModel.Patronymic,
-                Birthday = _addNewClientViewModel.Birthday,
-                Address = _addNewClientViewModel.Address,
-                PassportIssueDate = _addNewClientViewModel.PassportIssueDate,
-                PlaceOfPassportIssue = _addNewClientViewModel.PlaceOfPassportIssue,
-                PassportId = _addNewClientViewModel.PassportId,
+                Name = _newUser.Name,
+                Surname = _newUser.Surname,
+                Patronymic = _newUser.Patronymic,
+                Birthday = _newUser.Birthday,
+                Address = _newUser.Address,
+                PassportIssueDate = _newUser.PassportIssueDate,
+                PlaceOfPassportIssue = _newUser.PlaceOfPassportIssue,
+                PassportId = _newUser.PassportId,
+                AccountStatus = 0
             };
             Simissuance newSimissuance = new Simissuance()
             {
-                PassportNumber = _addNewClientViewModel.PassportId,
-                SimcardNumber = _addNewClientViewModel.SimCardId,
+                PassportNumber = _newUser.PassportId,
+                SimcardNumber = _selectedSimCard.SimcardNumber,
                 IssueDate = DateOnly.FromDateTime(DateTime.Today),
                 ExpiryDate = DateOnly.FromDateTime(DateTime.Today.AddYears(6)),
-                PassportNumberNavigation = newUser,
-                SimcardNumberNavigation = sim
+                
 
 
 
@@ -70,14 +72,15 @@ namespace TeleTech.Commands
             {
                 throw new Exception("Add New User Exception");
             }
-
+            
 
 
 
         }
-        public AddUserCommand(AddNewClientViewModel addNewClientViewModel)
+        public AddUserCommand(User newUser, Sim selectedSimCard)
         {
-            _addNewClientViewModel = addNewClientViewModel;
+            _newUser = newUser;
+            _selectedSimCard = selectedSimCard;
 
 
         }

@@ -28,7 +28,7 @@ Panel.ZIndex="1" Text="Отчество" Visibility="{Binding ElementName=Patron
             <Grid Grid.Row="2" Width="300" Height="30" HorizontalAlignment="Center">
                 <TextBlock Margin="10 0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
 Panel.ZIndex="1" Text="Дата рождения" Visibility="{Binding ElementName=BirthDay, Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
-                <TextBox x:Name="BirthDay" Text="{Binding Birthday}" Style="{StaticResource SearchBox}" Height="30"/>
+                <TextBox x:Name="BirthDay" Text="{Binding users.Birthday}" Style="{StaticResource SearchBox}" Height="30"/>
             </Grid>
             <Grid Grid.Row="2" Width="300" Height="40" HorizontalAlignment="Center">
                 <TextBlock Margin="10 0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
@@ -38,20 +38,21 @@ Panel.ZIndex="1" Text="Адрес" Visibility="{Binding ElementName=Address, Pat
             <Grid Grid.Row="2" Width="300" Height="30" HorizontalAlignment="Center">
                 <TextBlock Margin="10 0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
 Panel.ZIndex="1" Text="Номер пасспорта" Visibility="{Binding ElementName=PassportId, Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
-                <TextBox x:Name="PassportId" Text="{Binding PassportId}" Style="{StaticResource SearchBox}" Height="30"/>
+                <TextBox x:Name="PassportId" Text="{Binding users.PassportId}" Style="{StaticResource SearchBox}" Height="30"/>
             </Grid>
             <Grid Grid.Row="2" Width="300" Height="40" HorizontalAlignment="Center">
                 <TextBlock Margin="10 0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
 Panel.ZIndex="1" Text="Дата выдачи пасспорта" Visibility="{Binding ElementName=PassportIssueDate, Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
-                <TextBox x:Name="PassportIssueDate" Text="{Binding PassportIssueDate}" Style="{StaticResource SearchBox}" Height="30"/>
+                <TextBox x:Name="PassportIssueDate" Text="{Binding users.PassportIssueDate}" Style="{StaticResource SearchBox}" Height="30"/>
             </Grid>
             <Grid Grid.Row="2" Width="300" Height="30" HorizontalAlignment="Center">
                 <TextBlock Margin="10 0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
 Panel.ZIndex="1" Text="Место выдачи паспорта" Visibility="{Binding ElementName=PlaceOfPassportIssue, Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
-                <TextBox x:Name="PlaceOfPassportIssue" Text="{Binding PlaceOfPassportIssue}" Style="{StaticResource SearchBox}" Height="30"/>
+                <TextBox x:Name="PlaceOfPassportIssue" Text="{Binding users.PlaceOfPassportIssue}" Style="{StaticResource SearchBox}" Height="30"/>
             </Grid>
-            <ComboBox Height="30" Width="300" ItemsSource="{Binding SimList}" DisplayMemberPath="Tariff" SelectedValuePath="SimcardNumber" SelectedValue="{Binding SimCardId}"/>
-            <Button Content="Зарегистрироваться" Command="{Binding AddUserCommand}"></Button>
+            <ComboBox x:Name="cha" Height="30" Width="300" ItemsSource="{Binding SimList}" DisplayMemberPath="Tariff" 
+                      SelectedValuePath="SimcardNumber" SelectedValue="{Binding SelectedSimCard.SimcardNumber, Mode=TwoWay}" SelectedItem="{Binding SelectedSimCard.SimcardNumber, Mode=TwoWay}" SelectionChanged="cha_SelectionChanged"/>
+            <Button Content="Зарегистрироваться" Command="{Binding AddUserCommand}" CommandParameter="{Binding selectedSimCardId}"></Button>
             <Button Content="распечатать" Command="{Binding GetAgreementCommand}"/>
         </StackPanel>
         

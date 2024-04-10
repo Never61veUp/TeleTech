@@ -12,6 +12,9 @@ namespace TeleTech.View
             InitializeComponent();
         }
 
+        private void cha_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
+        }
     }
 }
