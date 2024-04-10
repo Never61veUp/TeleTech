@@ -42,7 +42,7 @@ Panel.ZIndex="1" Text="Номер пасспорта" Visibility="{Binding Eleme
             <Grid Grid.Row="2" Width="300" Height="40" HorizontalAlignment="Center">
                 <TextBlock Margin="10 0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
 Panel.ZIndex="1" Text="Дата выдачи пасспорта" Visibility="{Binding ElementName=PassportIssueDate, Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
-                <TextBox x:Name="PassportIssueDate" Text="{Binding Passportissuedate}" Style="{StaticResource SearchBox}" Height="30"/>
+                <TextBox x:Name="PassportIssueDate" Text="{Binding users.PassportIssueDate}" Style="{StaticResource SearchBox}" Height="30"/>
             </Grid>
             <Grid Grid.Row="2" Width="300" Height="40" HorizontalAlignment="Center">
                 <TextBlock Margin="10 0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"

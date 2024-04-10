@@ -15,13 +15,7 @@ namespace TeleTech.ViewModel
         public List<Sim> sims { get; set; }
         private List<Simissuance> simissuances;
 
-        #region ПОЛЯ ДОБАВЛЕНИЯ
-
-
-
-
-        #endregion
-
+        
         public EditUserViewModel(int idUser)
         {
             _idUser = idUser;
@@ -31,15 +25,7 @@ namespace TeleTech.ViewModel
             users = armContext.Users.Where(x => x.Id == _idUser).FirstOrDefault();
             SaveUserEditChanges = new EditUserCommand(users,_idUser);
             GetAgreementCommand = new GetAgreementCommand(users);
-            //Name = users.Name;
-            //SurName = users.Surname;
-            //Patronymic = users.Patronymic;
-            //Birthday = users.Birthday;
-            //Address = users.Address;
-            //PassportIssueDate = users.PassportIssueDate;
-            //PlaceOfPassportIssue = users.PlaceOfPassportIssue;
-            //PassportId = users.PassportId;
-            //SimCardId = armContext.Simissuances.Where(x => x.PassportNumber == users.PassportId).FirstOrDefault().SimcardNumber;
+            
 
 
         }
