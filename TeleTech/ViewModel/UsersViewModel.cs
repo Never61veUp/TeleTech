@@ -7,35 +7,47 @@ namespace TeleTech.ViewModel
 {
     class UsersViewModel : ViewModelBase
     {
-        public static ICommand AddNewClientCommand { get; set; }
-        public static ICommand EditUserCommand { get; set; }
+        
+        private readonly ArmContext armContext = new ArmContext();
 
-        public ArmContext armContext = new ArmContext();
-
-
-
-        private NavigationStore _navigationStore;
+        private readonly NavigationStore _navigationStore;
         //TODO: Убрать мейнвиндов
-        private MainWindowViewModel _mainWindowViewModel;
+        private readonly MainWindowViewModel _mainWindowViewModel;
 
-        public string CountUsers { get; set; }
-        private int _activeUserId;
-        public int activeUserId
+        private int _selectedUserId;
+        private string _filterText;
+        private List<UserExtended> _usersWithSIMs;
+
+        
+        public UsersViewModel(NavigationStore navigationStore, AccountStore accountStore, MainWindowViewModel 
+            mainWindowViewModel)
         {
-            get { return _activeUserId; }
-            set
-            {
-                _activeUserId = value;
-                OnPropertyChanged(nameof(activeUserId));
-            }
+            _navigationStore = navigationStore;
+            _mainWindowViewModel = mainWindowViewModel;
+
+            UpdateUsersDataGrid();
+
+            EditUserCommand = new ShowDialogCommand<EditUserViewModel>(_navigationStore, () => new EditUserViewModel(SelectedUserId),
+                _mainWindowViewModel);
+
+            CountUsers = $"{armContext.Users.Count()} пользователей";
         }
 
-        private string _filterText;
-        private List<UserExtended> usersWithSIMs;
-
+        public static ICommand AddNewClientCommand { get; set; }
+        public static ICommand EditUserCommand { get; set; }
+        public string CountUsers { get; set; }
+        public int SelectedUserId
+        {
+            get => _selectedUserId; 
+            set
+            {
+                _selectedUserId = value;
+                OnPropertyChanged(nameof(SelectedUserId));
+            }
+        }
         public string FilterText
         {
-            get { return _filterText; }
+            get => _filterText;
             set
             {
                 _filterText = value;
@@ -46,25 +58,16 @@ namespace TeleTech.ViewModel
 
         public List<UserExtended> UsersWithSIMs
         {
-            get => usersWithSIMs; set
+            get => _usersWithSIMs; 
+            private set
             {
-                usersWithSIMs = value;
+                _usersWithSIMs = value;
                 OnPropertyChanged(nameof(UsersWithSIMs));
             }
         }
 
 
-        public UsersViewModel(NavigationStore navigationStore, AccountStore accountStore)
-        {
-            _navigationStore = navigationStore;
-
-            UpdateUsersDataGrid();
-
-            EditUserCommand = new ShowDialogCommand<EditUserViewModel>(_navigationStore, () => new EditUserViewModel(activeUserId), _mainWindowViewModel);
-
-            CountUsers = $"{armContext.Users.Count()} пользователей";
-        }
-        public void UpdateUsersDataGrid()
+        private void UpdateUsersDataGrid()
         {
 
             UsersWithSIMs = (from user in armContext.Users
@@ -76,6 +79,8 @@ namespace TeleTech.ViewModel
                              select new UserExtended
                              {
                                  Name = $"{user.Surname} {user.Name[0]}.{user.Patronymic[0]}.",
+                                 Surname = user.Surname,
+                                 Patronymic = user.Patronymic,
                                  Character = user.Name[0],
                                  Id = user.Id,
                                  PassportId = user.PassportId,
@@ -85,9 +90,17 @@ namespace TeleTech.ViewModel
                                  Birthday = user.Birthday,
                                  Address = user.Address,
                              }).ToList();
+
+
             if (!String.IsNullOrEmpty(FilterText))
-                UsersWithSIMs = UsersWithSIMs.Where(x => x.PassportId.ToString() == FilterText).ToList();
+            {
+                UsersWithSIMs = UsersWithSIMs.Where(x => x.PassportId.ToString().Contains(FilterText) ||
+                x.Surname.ToLower().Contains(FilterText)).ToList();
+            }
+
 
         }
+
+
     }
 }

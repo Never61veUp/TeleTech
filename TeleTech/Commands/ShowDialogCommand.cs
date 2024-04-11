@@ -11,9 +11,10 @@ namespace TeleTech.Commands
         private readonly MainWindowViewModel _mainWindowViewModel;
         public ShowDialogCommand(NavigationStore navigationStore, Func<TView> createDialog, MainWindowViewModel mainWindowViewModel)
         {
+            _mainWindowViewModel = mainWindowViewModel;
             _navigationStore = navigationStore;
             _createDialog = createDialog;
-            _mainWindowViewModel = mainWindowViewModel;
+            
         }
         public override void Execute(object? parameter)
         {

@@ -55,7 +55,7 @@
             </Grid>
             <DataGrid Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" 
                       ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" Grid.Row="3" RowStyle="{StaticResource DataGridRowStyle}" 
-                      ItemsSource="{Binding UsersWithSIMs}" SelectedValuePath="Id" SelectedValue="{Binding activeUserId}" x:Name="UsersDataGrid" SelectedItem="{Binding activeUserId}">
+                      ItemsSource="{Binding UsersWithSIMs}" SelectedValuePath="Id" SelectedValue="{Binding ActiveUserId}" x:Name="UsersDataGrid">
                 <DataGrid.Columns >
                     <DataGridCheckBoxColumn CanUserResize="False" Width="auto">
                         <DataGridCheckBoxColumn.HeaderTemplate>
