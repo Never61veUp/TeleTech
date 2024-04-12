@@ -55,7 +55,7 @@
             </Grid>
             <DataGrid Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" 
                       ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" Grid.Row="3" RowStyle="{StaticResource DataGridRowStyle}" 
-                      ItemsSource="{Binding UsersWithSIMs}" SelectedValuePath="Id" SelectedValue="{Binding ActiveUserId}" x:Name="UsersDataGrid">
+                      ItemsSource="{Binding UsersWithSIMs}" SelectedValuePath="Id" SelectedValue="{Binding SelectedUserId}" x:Name="UsersDataGrid">
                 <DataGrid.Columns >
                     <DataGridCheckBoxColumn CanUserResize="False" Width="auto">
                         <DataGridCheckBoxColumn.HeaderTemplate>
@@ -102,7 +102,8 @@
                                         Path=DataContext.EditUserCommand}">
                                         <iconPacks:Modern Kind="Edit"/>
                                     </Button>
-                                    <Button Style="{StaticResource GridDeleteButton}" Margin="8 0">
+                                    <Button Style="{StaticResource GridDeleteButton}" Margin="8 0" Command="{Binding ElementName=ThisWindow, 
+                                        Path=DataContext.RemoveUserCommand}"> 
                                         <iconPacks:MaterialDesign Kind="Delete"/>
                                     </Button>
                                     

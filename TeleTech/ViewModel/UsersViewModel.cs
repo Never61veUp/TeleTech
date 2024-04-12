@@ -29,12 +29,15 @@ namespace TeleTech.ViewModel
 
             EditUserCommand = new ShowDialogCommand<EditUserViewModel>(_navigationStore, () => new EditUserViewModel(SelectedUserId),
                 _mainWindowViewModel);
+            RemoveUserCommand = new ShowDialogCommand<RemoveUserViewModel>(_navigationStore, () => new RemoveUserViewModel(SelectedUserId),
+                _mainWindowViewModel);
 
             CountUsers = $"{armContext.Users.Count()} пользователей";
         }
 
         public static ICommand AddNewClientCommand { get; set; }
         public static ICommand EditUserCommand { get; set; }
+        public ICommand RemoveUserCommand { get; set; }
         public string CountUsers { get; set; }
         public int SelectedUserId
         {
