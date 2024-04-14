@@ -10,7 +10,7 @@
         <StackPanel>
             <ComboBox x:Name="AccountStatusComboBox" ItemsSource="{Binding AccountStatusList}"
                       DisplayMemberPath="AccountStatusName" SelectedValuePath="Id"
-                      SelectedItem="{Binding SelectedAccountStatus,Mode=TwoWay}"/>
+                      SelectedIndex="{Binding SelectedAccountStatus,Mode=TwoWay}"/>
             <Button Content="Сохранить" Command="{Binding SaveAccountStatusChangesCommand}" CommandParameter="{Binding SelectedAccountStatus}"/>
         </StackPanel>
         

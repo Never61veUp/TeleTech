@@ -14,7 +14,7 @@ namespace TeleTech.ViewModel
     {
         private readonly ArmContext armContext = new();
         private readonly int _idUser;
-        private int _selectedAccountStatus;
+        private int _selectedAccountStatus = 2;
         //заменить на бд
         private List<AccountStatus> _accountStatusList;
 
