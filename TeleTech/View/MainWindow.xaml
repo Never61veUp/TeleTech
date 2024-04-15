@@ -33,8 +33,8 @@
                     <Border Grid.Row="1" Background="{StaticResource SecondaryBackgroundColor}" CornerRadius="0 70 0 0">
                         <!--User Avatar-->
 
-                        <Border Width="80" Height="80" CornerRadius="50" Margin="0 -40 20 0" Background="{Binding UserAvatarColor}" VerticalAlignment="Top">
-                            <TextBlock Text="{Binding UserCharacter}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="20"/>
+                        <Border Width="80" Height="80" CornerRadius="50" Margin="0 -40 20 0" Background="{Binding CurrentEmployee.BgColor}" VerticalAlignment="Top">
+                            <TextBlock Text="{Binding CurrentEmployee.Character}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="20"/>
                         </Border>
 
 
@@ -49,8 +49,8 @@
                             <RowDefinition Height="4*"></RowDefinition>
                         </Grid.RowDefinitions>
                         <StackPanel>
-                            <TextBlock Text="{Binding UserName}" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 55 20 0" Style="{StaticResource LeftBarUserNameText}"></TextBlock>
-                            <TextBlock Text="{Binding UserGeoStatus}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin=" 0 0 20 0" Style="{StaticResource LeftBarUserGeoStatusText}"></TextBlock>
+                            <TextBlock Text="{Binding CurrentEmployee.FirstName}" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 55 20 0" Style="{StaticResource LeftBarUserNameText}"></TextBlock>
+                            <TextBlock Text="{Binding CurrentEmployee.Location}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin=" 0 0 20 0" Style="{StaticResource LeftBarUserGeoStatusText}"></TextBlock>
                             <Rectangle Margin="0 10 0 0" VerticalAlignment="Bottom" Width="150" Height="1" Fill="{StaticResource MainTextColor}" RadiusX="1" RadiusY="1"></Rectangle>
                         </StackPanel>
 
