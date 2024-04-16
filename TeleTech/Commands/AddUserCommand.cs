@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using TeleTech.Model;
-using TeleTech.ViewModel;
 
 namespace TeleTech.Commands
 {
@@ -32,7 +31,7 @@ namespace TeleTech.Commands
                 SimcardNumber = _selectedSimCard.SimcardNumber,
                 IssueDate = DateOnly.FromDateTime(DateTime.Today),
                 ExpiryDate = DateOnly.FromDateTime(DateTime.Today.AddYears(6)),
-                
+
 
 
 
@@ -72,7 +71,7 @@ namespace TeleTech.Commands
             {
                 throw new Exception("Add New User Exception");
             }
-            
+
 
 
 

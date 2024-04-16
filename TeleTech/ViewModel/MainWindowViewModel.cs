@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
 using TeleTech.Commands;
 using TeleTech.Model;
 using TeleTech.Stores;
@@ -9,18 +8,18 @@ namespace TeleTech.ViewModel
 {
     internal class MainWindowViewModel : ViewModelBase
     {
-        
+
         private bool _isAppActive = true;
         private bool _isLeftBarVisible;
         private Visibility _isDialogOpen = Visibility.Collapsed;
 
         private readonly NavigationStore _navigationStore;
         private readonly AccountStore _accountStore;
-        
+
 
         public MainWindowViewModel(NavigationStore navigationStore, AccountStore accountStore)
         {
-            
+
 
             _navigationStore = navigationStore;
             _navigationStore.CurrentViewChanged += OnCurrentViewChanged;
@@ -34,14 +33,16 @@ namespace TeleTech.ViewModel
             UsersCommand = new NavigationCommand<UsersViewModel>(_navigationStore, () => new UsersViewModel(_navigationStore,
                 _accountStore, this), _accountStore);
             TariffCommand = new NavigationCommand<TariffViewModel>(_navigationStore, () => new TariffViewModel(), _accountStore);
-            SettingsCommand = new NavigationCommand<SettingsViewModel>(_navigationStore, () => new SettingsViewModel(),
-                _accountStore);
+            //SettingsCommand = new NavigationCommand<SettingsViewModel>(_navigationStore, () => new SettingsViewModel(),
+            //    _accountStore);
+            SettingsCommand = new NavigationCommand<SimCarViewModel>(_navigationStore, () => new SimCarViewModel(),
+    _accountStore);
             SingOutCommand = new SingOutCommand(_navigationStore, _accountStore);
 
             UsersViewModel.AddNewClientCommand = new ShowDialogCommand<AddNewClientViewModel>(_navigationStore,
                 () => new AddNewClientViewModel(_accountStore), this);
             CloseDialogWindowCommand = new ShowDialogCommand<AddNewClientViewModel>(_navigationStore, () => null, this);
-            
+
 
 
         }

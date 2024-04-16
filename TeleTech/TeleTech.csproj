@@ -47,6 +47,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\StringCheckLibrary\StringCheckLibrary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Assets\Icons\ava1.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

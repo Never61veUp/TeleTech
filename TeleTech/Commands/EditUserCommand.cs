@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using TeleTech.Model;
-using TeleTech.ViewModel;
 
 namespace TeleTech.Commands
 {
@@ -63,7 +62,7 @@ namespace TeleTech.Commands
                     }
 
                     transaction.Commit();
-                    
+
 
 
                 }

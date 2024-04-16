@@ -29,5 +29,8 @@
     <DataTemplate DataType="{x:Type vm:RemoveUserViewModel}">
         <view:RemoveUserView/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:SimCarViewModel}">
+    <view:SimCardView/>
+</DataTemplate>
     <BooleanToVisibilityConverter x:Key="BoolToVis"/>
 </ResourceDictionary>

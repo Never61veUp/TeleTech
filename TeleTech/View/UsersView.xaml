@@ -34,14 +34,14 @@
             </Button>
             <!--TabBarButtons-->
             <StackPanel Grid.Row="1" Orientation="Horizontal">
-                <Menu:Btn Style="{StaticResource TabButton}" IsChecked="True">
+                <Menu:Btn Style="{StaticResource TabButton}" IsChecked="{Binding ActiveUserType[0],Mode=TwoWay}">
                     <TextBlock Text="Все" Style="{StaticResource TabBarTextBlock}"></TextBlock>
                 </Menu:Btn>
-                <Menu:Btn Style="{StaticResource TabButton}">
+                <Menu:Btn Style="{StaticResource TabButton}" IsChecked="{Binding ActiveUserType[1],Mode=TwoWay}">
                     <TextBlock Text="Блок" Style="{StaticResource TabBarTextBlock}"></TextBlock>
                 </Menu:Btn>
-                <Menu:Btn Style="{StaticResource TabButton}">
-                    <TextBlock Text="Архив" Style="{StaticResource TabBarTextBlock}"></TextBlock>
+                <Menu:Btn Style="{StaticResource TabButton}" IsChecked="{Binding ActiveUserType[2],Mode=TwoWay}">
+                    <TextBlock Text="Архив" Style="{StaticResource TabBarTextBlock}" ></TextBlock>
                 </Menu:Btn>
             </StackPanel>
             <TextBlock Grid.Row="2" Text="{Binding CountUsers}" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>

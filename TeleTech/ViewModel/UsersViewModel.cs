@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Windows;
+using System.Windows.Input;
 using TeleTech.Commands;
 using TeleTech.Model;
 using TeleTech.Stores;
@@ -7,7 +8,7 @@ namespace TeleTech.ViewModel
 {
     class UsersViewModel : ViewModelBase
     {
-        
+
         private readonly ArmContext armContext = new ArmContext();
 
         private readonly NavigationStore _navigationStore;
@@ -17,9 +18,10 @@ namespace TeleTech.ViewModel
         private int _selectedUserId;
         private string _filterText;
         private List<UserExtended> _usersWithSIMs;
+        private bool[] _activeUserType = { true, false, false };
 
-        
-        public UsersViewModel(NavigationStore navigationStore, AccountStore accountStore, MainWindowViewModel 
+
+        public UsersViewModel(NavigationStore navigationStore, AccountStore accountStore, MainWindowViewModel
             mainWindowViewModel)
         {
             _navigationStore = navigationStore;
@@ -41,7 +43,7 @@ namespace TeleTech.ViewModel
         public string CountUsers { get; set; }
         public int SelectedUserId
         {
-            get => _selectedUserId; 
+            get => _selectedUserId;
             set
             {
                 _selectedUserId = value;
@@ -61,11 +63,26 @@ namespace TeleTech.ViewModel
 
         public List<UserExtended> UsersWithSIMs
         {
-            get => _usersWithSIMs; 
+            get => _usersWithSIMs;
             private set
             {
                 _usersWithSIMs = value;
                 OnPropertyChanged(nameof(UsersWithSIMs));
+            }
+        }
+
+        public bool[] ActiveUserType
+        {
+            get
+            {
+                return _activeUserType;
+            }
+            set
+            {
+                _activeUserType = value;
+                OnPropertyChanged(nameof(ActiveUserType));
+                UpdateUsersDataGrid();
+                MessageBox.Show(ActiveUserType.ToString());
             }
         }
 
@@ -88,18 +105,28 @@ namespace TeleTech.ViewModel
                                  Id = user.Id,
                                  PassportId = user.PassportId,
                                  SimCardNumber = subSi != null ? subSi.SimcardNumber : null,
-                                 Tariff = subS != null ? subS.Tariff : null,
+                                 Tariff = subS != null ? armContext.Tariffs.Where(x => x.Id == subS.Tariff).FirstOrDefault().TariffName.ToString() : null,
                                  BgColor = UserExtended.ChooseColor(user.Name[0]),
                                  Birthday = user.Birthday,
                                  Address = user.Address,
+                                 AccountStatus = user.AccountStatus
                              }).ToList();
 
+            for (int i = 0; i < ActiveUserType.Count(); i++)
+            {
+                if (ActiveUserType[i] == true)
+                {
+                    UsersWithSIMs = UsersWithSIMs.Where(x => x.AccountStatus == i).ToList();
+                }
+
+            }
 
             if (!String.IsNullOrEmpty(FilterText))
             {
                 UsersWithSIMs = UsersWithSIMs.Where(x => x.PassportId.ToString().Contains(FilterText) ||
                 x.Surname.ToLower().Contains(FilterText)).ToList();
             }
+            
 
 
         }

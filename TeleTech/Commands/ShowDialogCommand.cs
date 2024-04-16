@@ -14,7 +14,7 @@ namespace TeleTech.Commands
             _mainWindowViewModel = mainWindowViewModel;
             _navigationStore = navigationStore;
             _createDialog = createDialog;
-            
+
         }
         public override void Execute(object? parameter)
         {

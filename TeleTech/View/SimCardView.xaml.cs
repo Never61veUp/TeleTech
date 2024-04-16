@@ -3,15 +3,13 @@
 namespace TeleTech.View
 {
     /// <summary>
-    /// Логика взаимодействия для EditUserView.xaml
+    /// Логика взаимодействия для SimCardView.xaml
     /// </summary>
-    public partial class EditUserView : UserControl
+    public partial class SimCardView : UserControl
     {
-        public EditUserView()
+        public SimCardView()
         {
             InitializeComponent();
         }
-
-        
     }
 }

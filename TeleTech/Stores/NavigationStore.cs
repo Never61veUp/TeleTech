@@ -40,7 +40,7 @@ namespace TeleTech.Stores
         {
             CurrentDialogChanged?.Invoke();
         }
-     
+
 
     }
 }

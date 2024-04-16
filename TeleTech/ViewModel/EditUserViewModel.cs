@@ -15,17 +15,17 @@ namespace TeleTech.ViewModel
         public List<Sim> sims { get; set; }
         private List<Simissuance> simissuances;
 
-        
+
         public EditUserViewModel(int idUser)
         {
             _idUser = idUser;
-            
+
 
 
             users = armContext.Users.Where(x => x.Id == _idUser).FirstOrDefault();
-            SaveUserEditChanges = new EditUserCommand(users,_idUser);
+            SaveUserEditChanges = new EditUserCommand(users, _idUser);
             GetAgreementCommand = new GetAgreementCommand(users);
-            
+
 
 
         }
