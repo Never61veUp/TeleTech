@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 using TeleTech.Commands;
 using TeleTech.Model;
@@ -18,8 +19,8 @@ namespace TeleTech.ViewModel
         private int _selectedUserId;
         private string _filterText;
         private List<UserExtended> _usersWithSIMs;
-        private bool[] _activeUserType = { true, false, false };
-
+        private ObservableCollection<bool> _activeUserType =new ObservableCollection<bool> { true, false, false, false };
+        private string _countUsers;
 
         public UsersViewModel(NavigationStore navigationStore, AccountStore accountStore, MainWindowViewModel
             mainWindowViewModel)
@@ -28,19 +29,27 @@ namespace TeleTech.ViewModel
             _mainWindowViewModel = mainWindowViewModel;
 
             UpdateUsersDataGrid();
-
+            _activeUserType.CollectionChanged += _activeUserType_CollectionChanged;
             EditUserCommand = new ShowDialogCommand<EditUserViewModel>(_navigationStore, () => new EditUserViewModel(SelectedUserId),
                 _mainWindowViewModel);
             RemoveUserCommand = new ShowDialogCommand<RemoveUserViewModel>(_navigationStore, () => new RemoveUserViewModel(SelectedUserId),
                 _mainWindowViewModel);
 
-            CountUsers = $"{armContext.Users.Count()} пользователей";
+            
         }
+
+       
 
         public static ICommand AddNewClientCommand { get; set; }
         public static ICommand EditUserCommand { get; set; }
         public ICommand RemoveUserCommand { get; set; }
-        public string CountUsers { get; set; }
+        public string CountUsers { get => _countUsers; 
+            set 
+            {
+                _countUsers = value;
+                OnPropertyChanged(nameof(CountUsers));
+            } 
+        }
         public int SelectedUserId
         {
             get => _selectedUserId;
@@ -71,21 +80,15 @@ namespace TeleTech.ViewModel
             }
         }
 
-        public bool[] ActiveUserType
+        public ObservableCollection<bool> ActiveUserType
         {
-            get
-            {
-                return _activeUserType;
-            }
+            get => _activeUserType;
             set
             {
                 _activeUserType = value;
-                OnPropertyChanged(nameof(ActiveUserType));
-                UpdateUsersDataGrid();
-                MessageBox.Show(ActiveUserType.ToString());
             }
         }
-
+        
 
         private void UpdateUsersDataGrid()
         {
@@ -111,24 +114,31 @@ namespace TeleTech.ViewModel
                                  Address = user.Address,
                                  AccountStatus = user.AccountStatus
                              }).ToList();
-
-            for (int i = 0; i < ActiveUserType.Count(); i++)
+            if (!ActiveUserType[0])
             {
-                if (ActiveUserType[i] == true)
+                for (int i = 0; i < ActiveUserType.Count(); i++)
                 {
-                    UsersWithSIMs = UsersWithSIMs.Where(x => x.AccountStatus == i).ToList();
-                }
+                    if (ActiveUserType[i] == true)
+                    {
+                        UsersWithSIMs = UsersWithSIMs.Where(x => x.AccountStatus == i).ToList();
+                    }
 
+                }
             }
+            
 
             if (!String.IsNullOrEmpty(FilterText))
             {
                 UsersWithSIMs = UsersWithSIMs.Where(x => x.PassportId.ToString().Contains(FilterText) ||
                 x.Surname.ToLower().Contains(FilterText)).ToList();
             }
-            
 
+            CountUsers = $"{UsersWithSIMs.Count()} пользователей";
 
+        }
+        private void _activeUserType_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            UpdateUsersDataGrid();
         }
 
 

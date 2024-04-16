@@ -43,6 +43,9 @@
                 <Menu:Btn Style="{StaticResource TabButton}" IsChecked="{Binding ActiveUserType[2],Mode=TwoWay}">
                     <TextBlock Text="Архив" Style="{StaticResource TabBarTextBlock}" ></TextBlock>
                 </Menu:Btn>
+                <Menu:Btn Style="{StaticResource TabButton}" IsChecked="{Binding ActiveUserType[3],Mode=TwoWay}">
+                    <TextBlock Text="Архив" Style="{StaticResource TabBarTextBlock}" ></TextBlock>
+                </Menu:Btn>
             </StackPanel>
             <TextBlock Grid.Row="2" Text="{Binding CountUsers}" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             <TextBlock Grid.Row="2" Text="Фильтр" HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Center" 
