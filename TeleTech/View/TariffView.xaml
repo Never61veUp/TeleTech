@@ -4,9 +4,82 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TeleTech.View"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="Beige">
+             d:DesignHeight="450" d:DesignWidth="800" Background="{StaticResource MainBackgroundColor}">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Редактирование Тарифов"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Foreground="White"
+                   FontSize="24"/>
+        <Button x:Name="AddNewTariff" 
+                Content="Добавить тариф" 
+                Style="{StaticResource AddNewUser}"
+                Grid.Row="1"/>
+        <DataGrid Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" 
+          ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" Grid.Row="3" RowStyle="{StaticResource DataGridRowStyle}" 
+          ItemsSource="{Binding TariffList}" SelectedValuePath="Id" SelectedValue="{Binding SelectedUserId}" x:Name="UsersDataGrid">
+    <DataGrid.Columns >
+        <DataGridCheckBoxColumn CanUserResize="False" Width="auto">
+            <DataGridCheckBoxColumn.HeaderTemplate>
+                <DataTemplate>
+                    <CheckBox/>
+                </DataTemplate>
+            </DataGridCheckBoxColumn.HeaderTemplate>
+        </DataGridCheckBoxColumn>
+        <DataGridTextColumn Header="# " IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Id}">
+            
+        </DataGridTextColumn>
+        <!--<DataGridTemplateColumn Header="Название" IsReadOnly="True" Width="*" CanUserResize="False" >
+            <DataGridTemplateColumn.CellTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="{Binding BgColor}">
+                            <TextBlock Text="{Binding Character}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
+                        </Border>
+                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 0 1"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>-->
+        <DataGridTextColumn IsReadOnly="True" Header="Название тарифа" Width="*" Binding="{Binding TariffName}" CanUserResize="False">
+            
+        </DataGridTextColumn>
+        <DataGridTextColumn IsReadOnly="True" Header="Количество Гигабайтов"  Width="*" Binding="{Binding QuantityGigabyte}" CanUserResize="False">
+
+        </DataGridTextColumn>
+        <DataGridTextColumn IsReadOnly="True" Header="Количество Минут"  Width="*" Binding="{Binding QuantityMinutes}" CanUserResize="False">
+
+        </DataGridTextColumn>
+        <DataGridTextColumn IsReadOnly="True" Header="Количество СМС"  Width="*" Binding="{Binding QuantitySms}" CanUserResize="False">
+
+        </DataGridTextColumn>
         
+        <DataGridTemplateColumn Header="Редактировать" IsReadOnly="True" Width="auto" CanUserResize="False">
+            <DataGridTemplateColumn.CellTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Style="{StaticResource GridEditButton}" Command="{Binding ElementName=ThisWindow, 
+                            Path=DataContext.EditUserCommand}">
+                            <iconPacks:Modern Kind="Edit"/>
+                        </Button>
+                        <Button Style="{StaticResource GridDeleteButton}" Margin="8 0" Command="{Binding ElementName=ThisWindow, 
+                            Path=DataContext.RemoveUserCommand}"> 
+                            <iconPacks:MaterialDesign Kind="Delete"/>
+                        </Button>
+                        
+                    </StackPanel>
+                </DataTemplate>
+            </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+        
+    </DataGrid.Columns>
+</DataGrid>
     </Grid>
 </UserControl>

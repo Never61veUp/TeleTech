@@ -29,7 +29,7 @@ namespace TeleTech.ViewModel
             _mainWindowViewModel = mainWindowViewModel;
 
             UpdateUsersDataGrid();
-            _activeUserType.CollectionChanged += _activeUserType_CollectionChanged;
+            _activeUserType.CollectionChanged += ActiveUserType_CollectionChanged;
             EditUserCommand = new ShowDialogCommand<EditUserViewModel>(_navigationStore, () => new EditUserViewModel(SelectedUserId),
                 _mainWindowViewModel);
             RemoveUserCommand = new ShowDialogCommand<RemoveUserViewModel>(_navigationStore, () => new RemoveUserViewModel(SelectedUserId),
@@ -116,7 +116,7 @@ namespace TeleTech.ViewModel
                              }).ToList();
             if (!ActiveUserType[0])
             {
-                for (int i = 0; i < ActiveUserType.Count(); i++)
+                for (int i = 0; i < ActiveUserType.Count; i++)
                 {
                     if (ActiveUserType[i] == true)
                     {
@@ -136,7 +136,8 @@ namespace TeleTech.ViewModel
             CountUsers = $"{UsersWithSIMs.Count()} пользователей";
 
         }
-        private void _activeUserType_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void ActiveUserType_CollectionChanged(object? sender, 
+            System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             UpdateUsersDataGrid();
         }
