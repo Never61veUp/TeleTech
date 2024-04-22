@@ -1,9 +1,10 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:vm="clr-namespace:TeleTech.ViewModel"
-                    xmlns:view="clr-namespace:TeleTech.View">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:view="clr-namespace:TeleTech.View"
+    xmlns:vm="clr-namespace:TeleTech.ViewModel">
     <DataTemplate DataType="{x:Type vm:MainWindowViewModel}">
-        <view:MainWindow/>
+        <view:MainWindow />
     </DataTemplate>
     <DataTemplate DataType="{x:Type vm:HomeViewModel}">
         <view:HomeView />
@@ -27,10 +28,13 @@
         <view:EditUserView />
     </DataTemplate>
     <DataTemplate DataType="{x:Type vm:RemoveUserViewModel}">
-        <view:RemoveUserView/>
+        <view:RemoveUserView />
     </DataTemplate>
     <DataTemplate DataType="{x:Type vm:SimCarViewModel}">
-    <view:SimCardView/>
-</DataTemplate>
-    <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+        <view:SimCardView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:EditTariffViewModel}">
+        <view:EditTariffView />
+    </DataTemplate>
+    <BooleanToVisibilityConverter x:Key="BoolToVis" />
 </ResourceDictionary>

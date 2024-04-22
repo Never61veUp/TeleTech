@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:TeleTech.View"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="{StaticResource MainBackgroundColor}">
+             d:DesignHeight="450" d:DesignWidth="800" Background="{StaticResource MainBackgroundColor}" x:Name="ThisWindow">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -21,10 +21,11 @@
         <Button x:Name="AddNewTariff" 
                 Content="Добавить тариф" 
                 Style="{StaticResource AddNewUser}"
-                Grid.Row="1"/>
+                Grid.Row="1"
+                Command="{Binding OpenEditTariffDialogWindowCommand}"/>
         <DataGrid Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" 
           ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" Grid.Row="3" RowStyle="{StaticResource DataGridRowStyle}" 
-          ItemsSource="{Binding TariffList}" SelectedValuePath="Id" SelectedValue="{Binding SelectedUserId}" x:Name="UsersDataGrid">
+          ItemsSource="{Binding TariffList}" SelectedValuePath="Id" SelectedValue="{Binding SelectedTariffId}" x:Name="UsersDataGrid">
     <DataGrid.Columns >
         <DataGridCheckBoxColumn CanUserResize="False" Width="auto">
             <DataGridCheckBoxColumn.HeaderTemplate>
@@ -65,9 +66,11 @@
             <DataGridTemplateColumn.CellTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <Button Style="{StaticResource GridEditButton}" Command="{Binding ElementName=ThisWindow, 
-                            Path=DataContext.EditUserCommand}">
-                            <iconPacks:Modern Kind="Edit"/>
+                                <Button Style="{StaticResource GridEditButton}" 
+                                Command="{Binding ElementName=ThisWindow, 
+                                        Path=DataContext.OpenEditTariffDialogWindowCommand}"
+                                >
+                                    <iconPacks:Modern Kind="Edit"/>
                         </Button>
                         <Button Style="{StaticResource GridDeleteButton}" Margin="8 0" Command="{Binding ElementName=ThisWindow, 
                             Path=DataContext.RemoveUserCommand}"> 

@@ -1,17 +1,18 @@
-﻿<Application x:Class="TeleTech.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:TeleTech"
-             StartupUri="View/MainWindow.xaml">
+﻿<Application
+    x:Class="TeleTech.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:TeleTech"
+    StartupUri="View/MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Style/Colors.xaml"></ResourceDictionary>
-                <ResourceDictionary Source="Style/Images.xaml"></ResourceDictionary>
-                <ResourceDictionary Source="Style/Text.xaml"></ResourceDictionary>
-                <ResourceDictionary Source="Style/Buttons.xaml"></ResourceDictionary>
-                <ResourceDictionary Source="Style/Grid.xaml"></ResourceDictionary>
-                <!--Connect VM & View-->
+                <ResourceDictionary Source="Style/Colors.xaml" />
+                <ResourceDictionary Source="Style/Images.xaml" />
+                <ResourceDictionary Source="Style/Text.xaml" />
+                <ResourceDictionary Source="Style/Buttons.xaml" />
+                <ResourceDictionary Source="Style/Grid.xaml" />
+                <!--  Connect VM & View  -->
                 <ResourceDictionary Source="Services/DataTemplate.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

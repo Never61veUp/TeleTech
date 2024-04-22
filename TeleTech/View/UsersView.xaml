@@ -67,7 +67,7 @@
                             </DataTemplate>
                         </DataGridCheckBoxColumn.HeaderTemplate>
                     </DataGridCheckBoxColumn>
-                    <DataGridTextColumn Header="# " IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Id}">
+                    <DataGridTextColumn Header="##" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Id}">
                         
                     </DataGridTextColumn>
                     <DataGridTemplateColumn Header="ФИО" IsReadOnly="True" Width="*" CanUserResize="False" >

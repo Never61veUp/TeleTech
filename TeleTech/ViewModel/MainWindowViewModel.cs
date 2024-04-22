@@ -28,14 +28,15 @@ namespace TeleTech.ViewModel
 
             _accountStore = accountStore;
             _accountStore.CurrentAccountChanged += AccountStore_CurrentAccountChanged;
-
+            TariffViewModel.OpenEditTariffDialogWindowCommand = new ShowDialogCommand<EditTariffViewModel>
+                (_navigationStore, () => new EditTariffViewModel(TariffViewModel.SelectedTariffId), this);
             HomeCommand = new NavigationCommand<HomeViewModel>(_navigationStore, () => new HomeViewModel(), _accountStore);
             UsersCommand = new NavigationCommand<UsersViewModel>(_navigationStore, () => new UsersViewModel(_navigationStore,
                 _accountStore, this), _accountStore);
             TariffCommand = new NavigationCommand<TariffViewModel>(_navigationStore, () => new TariffViewModel(), _accountStore);
             //SettingsCommand = new NavigationCommand<SettingsViewModel>(_navigationStore, () => new SettingsViewModel(),
             //    _accountStore);
-            SettingsCommand = new NavigationCommand<SimCarViewModel>(_navigationStore, () => new SimCarViewModel(),
+            OpenSimViewCommand = new NavigationCommand<SimCarViewModel>(_navigationStore, () => new SimCarViewModel(),
     _accountStore);
             SingOutCommand = new SingOutCommand(_navigationStore, _accountStore);
 
@@ -50,7 +51,7 @@ namespace TeleTech.ViewModel
         public ICommand HomeCommand { get; }
         public ICommand UsersCommand { get; }
         public ICommand TariffCommand { get; }
-        public ICommand SettingsCommand { get; }
+        public ICommand OpenSimViewCommand { get; }
         public ICommand SingOutCommand { get; }
         public ICommand CloseDialogWindowCommand { get; }
         #endregion

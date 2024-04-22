@@ -1,12 +1,11 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <SolidColorBrush x:Key="MainBackgroundColor" Color="#21262A"/>
-    <SolidColorBrush x:Key="SecondaryBackgroundColor" Color="#282C31"/>
-    
-    <!--#region TextColors -->
-    <SolidColorBrush x:Key="MainTextColor" Color="#FFFFFF"/>
-    <SolidColorBrush x:Key="SecondaryTextColor" Color="Black"/>
-    <SolidColorBrush x:Key="PromptTextColor" Color="#b0b9c6"/>
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="MainBackgroundColor" Color="#21262A" />
+    <SolidColorBrush x:Key="SecondaryBackgroundColor" Color="#282C31" />
+
+    <!--#region TextColors-->
+    <SolidColorBrush x:Key="MainTextColor" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="SecondaryTextColor" Color="Black" />
+    <SolidColorBrush x:Key="PromptTextColor" Color="#b0b9c6" />
     <!--#endregion-->
-    
+
 </ResourceDictionary>

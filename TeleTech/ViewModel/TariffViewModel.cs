@@ -1,4 +1,6 @@
-﻿using TeleTech.Model;
+﻿using System.Windows.Input;
+using TeleTech.Commands;
+using TeleTech.Model;
 
 namespace TeleTech.ViewModel
 {
@@ -6,10 +8,21 @@ namespace TeleTech.ViewModel
     {
         private readonly ArmContext armContext = new ArmContext();
 
-        public List<Tariff> TariffList {  get; set; }
+        User user;
+        private static int selectedTariffId;
+
         public TariffViewModel()
         {
+
             TariffList = armContext.Tariffs.ToList();
+
+
         }
+
+        public static ICommand OpenEditTariffDialogWindowCommand { get; set; }
+        public List<Tariff> TariffList { get; set; }
+        public static int SelectedTariffId { 
+            get => selectedTariffId; 
+            set => selectedTariffId = value; }
     }
 }
