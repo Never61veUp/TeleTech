@@ -90,52 +90,52 @@ namespace TeleTech.ViewModel
         }
         
 
-        private void UpdateUsersDataGrid()
-        {
-
-            UsersWithSIMs = (from user in armContext.Users
-                             join simIssuance in armContext.Simissuances on user.PassportId equals simIssuance.PassportNumber
-                             into temp
-                             from subSi in temp.DefaultIfEmpty()
-                             join s in armContext.Sims on subSi.SimcardNumber equals s.SimcardNumber into temp2
-                             from subS in temp2.DefaultIfEmpty()
-                             select new UserExtended
-                             {
-                                 Name = $"{user.Surname} {user.Name[0]}.{user.Patronymic[0]}.",
-                                 Surname = user.Surname,
-                                 Patronymic = user.Patronymic,
-                                 Character = user.Name[0],
-                                 Id = user.Id,
-                                 PassportId = user.PassportId,
-                                 SimCardNumber = subSi != null ? subSi.SimcardNumber : null,
-                                 Tariff = subS != null ? armContext.Tariffs.Where(x => x.Id == subS.Tariff).FirstOrDefault().TariffName.ToString() : null,
-                                 BgColor = UserExtended.ChooseColor(user.Name[0]),
-                                 Birthday = user.Birthday,
-                                 Address = user.Address,
-                                 AccountStatus = user.AccountStatus
-                             }).ToList();
-            if (!ActiveUserType[0])
+            private void UpdateUsersDataGrid()
             {
-                for (int i = 0; i < ActiveUserType.Count; i++)
-                {
-                    if (ActiveUserType[i] == true)
-                    {
-                        UsersWithSIMs = UsersWithSIMs.Where(x => x.AccountStatus == i).ToList();
-                    }
 
+                UsersWithSIMs = (from user in armContext.Users
+                                 join simIssuance in armContext.Simissuances on user.PassportId equals simIssuance.PassportNumber
+                                 into temp
+                                 from subSi in temp.DefaultIfEmpty()
+                                 join s in armContext.Sims on subSi.SimcardNumber equals s.SimcardNumber into temp2
+                                 from subS in temp2.DefaultIfEmpty()
+                                 select new UserExtended
+                                 {
+                                     Name = $"{user.Surname} {user.Name[0]}.{user.Patronymic[0]}.",
+                                     Surname = user.Surname,
+                                     Patronymic = user.Patronymic,
+                                     Character = user.Name[0],
+                                     Id = user.Id,
+                                     PassportId = user.PassportId,
+                                     SimCardNumber = subSi != null ? subSi.SimcardNumber : null,
+                                     Tariff = subS != null ? armContext.Tariffs.Where(x => x.Id == subS.Tariff).FirstOrDefault().TariffName.ToString() : null,
+                                     BgColor = UserExtended.ChooseColor(user.Name[0]),
+                                     Birthday = user.Birthday,
+                                     Address = user.Address,
+                                     AccountStatus = user.AccountStatus
+                                 }).ToList();
+                if (!ActiveUserType[0])
+                {
+                    for (int i = 0; i < ActiveUserType.Count; i++)
+                    {
+                        if (ActiveUserType[i] == true)
+                        {
+                            UsersWithSIMs = UsersWithSIMs.Where(x => x.AccountStatus == i).ToList();
+                        }
+
+                    }
                 }
-            }
             
 
-            if (!String.IsNullOrEmpty(FilterText))
-            {
-                UsersWithSIMs = UsersWithSIMs.Where(x => x.PassportId.ToString().Contains(FilterText) ||
-                x.Surname.ToLower().Contains(FilterText)).ToList();
+                if (!String.IsNullOrEmpty(FilterText))
+                {
+                    UsersWithSIMs = UsersWithSIMs.Where(x => x.PassportId.ToString().Contains(FilterText) ||
+                    x.Surname.ToLower().Contains(FilterText)).ToList();
+                }
+
+                CountUsers = $"{UsersWithSIMs.Count()} пользователей";
+
             }
-
-            CountUsers = $"{UsersWithSIMs.Count()} пользователей";
-
-        }
         private void ActiveUserType_CollectionChanged(object? sender, 
             System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {

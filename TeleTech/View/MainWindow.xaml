@@ -149,7 +149,7 @@
                         <!--  Сим Карты  -->
                         <Menu:Btn
                             Grid.Row="4"
-                            Command="{Binding SettingsCommand}"
+                            Command="{Binding OpenSimViewCommand}"
                             Style="{StaticResource BtnStyle}">
                             <StackPanel Orientation="Horizontal">
                                 <Image
@@ -166,7 +166,7 @@
                         <!--  Настройки  -->
                         <Menu:Btn
                             Grid.Row="5"
-                            Command="{Binding OpenSimViewCommand}"
+                            Command="{Binding SettingsCommand}"
                             Style="{StaticResource BtnStyle}">
                             <StackPanel Orientation="Horizontal">
                                 <Image
@@ -180,6 +180,8 @@
                                     Text="Настройки" />
                             </StackPanel>
                         </Menu:Btn>
+
+
 
 
                         <!--  выйти  -->

@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Windows.Input;
 using TeleTech.Commands;
 using TeleTech.Model;
 
@@ -6,17 +7,53 @@ namespace TeleTech.ViewModel
 {
     class SimCarViewModel : ViewModelBase
     {
-        private Sim _sim = new Sim();
-        private readonly ArmContext armContext = new ArmContext();
+        
+        private readonly ArmContext _armContext = new ArmContext();
+        private string _filterText;
+        private List<Sim> sims;
 
         public SimCarViewModel()
         {
             AddNewSimCommand = new AddNewSimCommand();
-            Tariff = armContext.Tariffs.ToList();
+            Sims = _armContext.Sims.ToList();
+
         }
 
         public ICommand AddNewSimCommand { get; set; }
-        public Sim Sim { get { return _sim; } set { _sim = value; } }
-        public List<Tariff> Tariff { get; }
+        public List<Sim> Sims { get => sims; 
+            private set
+            {
+                sims = value;
+                OnPropertyChanged(nameof(Sims));
+            }
+        }
+        public string FilterText
+        {
+            get => _filterText;
+            set
+            {
+                _filterText = value;
+                OnPropertyChanged(nameof(FilterText));
+                UpdateUsersDataGrid();
+            }
+        }
+
+        private void UpdateUsersDataGrid()
+        {
+
+            Sims = _armContext.Sims.ToList();
+            
+
+
+            if (!String.IsNullOrEmpty(FilterText))
+            {
+                Sims = Sims.Where(x => x.SimcardNumber.ToString().Contains(FilterText) ||
+                x.UserPassport.ToString().ToLower().Contains(FilterText) || x.TariffName.Contains(FilterText)).ToList();
+            }
+
+           
+
+        }
     }
+
 }
