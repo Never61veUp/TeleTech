@@ -36,5 +36,8 @@
     <DataTemplate DataType="{x:Type vm:EditTariffViewModel}">
         <view:EditTariffView />
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:AddTariffViewModel}">
+        <view:AddTariffView />
+    </DataTemplate>
     <BooleanToVisibilityConverter x:Key="BoolToVis" />
 </ResourceDictionary>

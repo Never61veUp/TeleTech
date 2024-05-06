@@ -15,11 +15,11 @@ namespace TeleTech.ViewModel
 
         private readonly NavigationStore _navigationStore;
         private readonly AccountStore _accountStore;
-
+        private readonly TariffViewModel _tariffViewModel;
 
         public MainWindowViewModel(NavigationStore navigationStore, AccountStore accountStore)
         {
-
+            _tariffViewModel = new TariffViewModel();
 
             _navigationStore = navigationStore;
             _navigationStore.CurrentViewChanged += OnCurrentViewChanged;
@@ -29,7 +29,7 @@ namespace TeleTech.ViewModel
             _accountStore = accountStore;
             _accountStore.CurrentAccountChanged += AccountStore_CurrentAccountChanged;
             TariffViewModel.OpenEditTariffDialogWindowCommand = new ShowDialogCommand<EditTariffViewModel>
-                (_navigationStore, () => new EditTariffViewModel(TariffViewModel.SelectedTariffId), this);
+                (_navigationStore, () => new EditTariffViewModel(_tariffViewModel.SelectedTariffId), this);
             HomeCommand = new NavigationCommand<HomeViewModel>(_navigationStore, () => new HomeViewModel(), _accountStore);
             UsersCommand = new NavigationCommand<UsersViewModel>(_navigationStore, () => new UsersViewModel(_navigationStore,
                 _accountStore, this), _accountStore);
@@ -43,7 +43,7 @@ namespace TeleTech.ViewModel
             UsersViewModel.AddNewClientCommand = new ShowDialogCommand<AddNewClientViewModel>(_navigationStore,
                 () => new AddNewClientViewModel(_accountStore), this);
             CloseDialogWindowCommand = new ShowDialogCommand<AddNewClientViewModel>(_navigationStore, () => null, this);
-
+            TariffViewModel.AddTariffDIalogWindowShowCommand = new ShowDialogCommand<AddTariffViewModel>(_navigationStore,()=> new AddTariffViewModel(),this);
 
 
         }

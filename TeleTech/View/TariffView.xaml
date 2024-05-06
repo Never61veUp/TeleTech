@@ -26,7 +26,7 @@
         <Button
             x:Name="AddNewTariff"
             Grid.Row="1"
-            Command="{Binding OpenEditTariffDialogWindowCommand}"
+            Command="{Binding AddTariffDIalogWindowShowCommand}"
             Content="Добавить тариф"
             Style="{StaticResource AddNewUser}" />
         <DataGrid
@@ -36,6 +36,7 @@
             ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}"
             ItemsSource="{Binding TariffList}"
             RowStyle="{StaticResource DataGridRowStyle}"
+            SelectedItem="{Binding SelectedTariffId}"
             SelectedValue="{Binding SelectedTariffId}"
             SelectedValuePath="Id"
             Style="{DynamicResource DataGridStyle}">
@@ -53,18 +54,7 @@
                     CanUserResize="False"
                     Header="# "
                     IsReadOnly="True" />
-                <!--<DataGridTemplateColumn Header="Название" IsReadOnly="True" Width="*" CanUserResize="False" >
-            <DataGridTemplateColumn.CellTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="{Binding BgColor}">
-                            <TextBlock Text="{Binding Character}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
-                        </Border>
-                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 0 1"></TextBlock>
-                    </StackPanel>
-                </DataTemplate>
-            </DataGridTemplateColumn.CellTemplate>
-        </DataGridTemplateColumn>-->
+
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding TariffName}"
@@ -103,7 +93,8 @@
                                 </Button>
                                 <Button
                                     Margin="8,0"
-                                    Command="{Binding ElementName=ThisWindow, Path=DataContext.RemoveUserCommand}"
+                                    Command="{Binding ElementName=ThisWindow, Path=DataContext.RemoveTariffCommand}"
+                                    CommandParameter="{Binding ElementName=ThisWindow, Path=DataContext.SelectedTariffId}"
                                     Style="{StaticResource GridDeleteButton}">
                                     <iconPacks:MaterialDesign Kind="Delete" />
                                 </Button>

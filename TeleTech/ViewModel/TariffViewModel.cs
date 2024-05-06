@@ -8,21 +8,34 @@ namespace TeleTech.ViewModel
     {
         private readonly ArmContext armContext = new ArmContext();
 
-        User user;
-        private static int selectedTariffId;
+        
+        private static int _selectedTariffId;
 
         public TariffViewModel()
         {
 
             TariffList = armContext.Tariffs.ToList();
+            RemoveTariffCommand = new RemoveTariffCommand();
+            
 
 
         }
 
+        #region ICommand
         public static ICommand OpenEditTariffDialogWindowCommand { get; set; }
+        public ICommand RemoveTariffCommand { get; set; }
+        public static ICommand AddTariffDIalogWindowShowCommand { get; set; }
+        #endregion
+
         public List<Tariff> TariffList { get; set; }
-        public static int SelectedTariffId { 
-            get => selectedTariffId; 
-            set => selectedTariffId = value; }
+        
+        public int SelectedTariffId { 
+            get => _selectedTariffId;
+            set
+            {
+                _selectedTariffId = value;
+                OnPropertyChanged(nameof(SelectedTariffId));
+            }
+        }
     }
 }

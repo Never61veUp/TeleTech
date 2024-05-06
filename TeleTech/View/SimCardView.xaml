@@ -73,7 +73,7 @@
                     Width="*"
                     Binding="{Binding IssueYear}"
                     CanUserResize="False"
-                    Header="Дата выдачи"
+                    Header="Дата выпуска"
                     IsReadOnly="True" />
                 <DataGridTextColumn
                     Width="*"
