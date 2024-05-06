@@ -30,7 +30,7 @@ namespace TeleTech.Commands
                         }
 
                         transaction.Commit();
-
+                        DataObjectSettingDataEventArgs
 
 
                     }
