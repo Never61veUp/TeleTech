@@ -17,10 +17,14 @@
 
   <ItemGroup>
     <None Remove="Assets\Icons\ava1.png" />
+    <None Remove="Assets\Icons\free-icon-growth-5412879.png" />
     <None Remove="Assets\Icons\home.png" />
     <None Remove="Assets\Icons\logout.png" />
     <None Remove="Assets\Icons\Mask group.png" />
+    <None Remove="Assets\Icons\sales.png" />
+    <None Remove="Assets\Icons\sales1.png" />
     <None Remove="Assets\Icons\settings.png" />
+    <None Remove="Assets\Icons\sims.png" />
     <None Remove="Assets\Icons\tariff.png" />
     <None Remove="Assets\Icons\teamwork.png" />
     <None Remove="Assets\Icons\users.png" />
@@ -40,7 +44,6 @@
 
   <ItemGroup>
     <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
-    <PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.0-rc2" />
     <PackageReference Include="MahApps.Metro.IconPacks" Version="4.11.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.2">
@@ -48,7 +51,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Office.Interop.Excel" Version="15.0.4795.1001" />
-    <PackageReference Include="OxyPlot.Wpf" Version="2.1.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -59,6 +61,7 @@
     <Resource Include="Assets\Icons\ava1.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Assets\Icons\free-icon-growth-5412879.png" />
     <Resource Include="Assets\Icons\home.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -68,9 +71,12 @@
     <Resource Include="Assets\Icons\Mask group.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Assets\Icons\sales.png" />
+    <Resource Include="Assets\Icons\sales1.png" />
     <Resource Include="Assets\Icons\settings.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Assets\Icons\sims.png" />
     <Resource Include="Assets\Icons\tariff.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

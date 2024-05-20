@@ -20,12 +20,12 @@ namespace TeleTech.Commands
         }
         public override void Execute(object? parameter)
         {
-            if (parameter == null || 0 > (int)parameter || (int)parameter > 2)
+            if (parameter == null || 1 > (int)parameter || (int)parameter > 3)
                 throw new Exception("Роль не выбрана");
             _currentUser.AccountStatus = (int)parameter;
             armContext.SaveChanges();
             if (armContext.SaveChanges() == 0)
-                MessageBox.Show("dsa");
+                MessageBox.Show("Успешно");
 
         }
     }

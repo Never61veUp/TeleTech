@@ -4,8 +4,20 @@ namespace TeleTech.Stores
 {
     internal class AccountStore
     {
-        private EmployeeExtended _currentAccount;
-        public EmployeeExtended CurrentAccount
+        private static AccountStore _instance;
+        public static AccountStore Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new AccountStore();
+                }
+                return _instance;
+            }
+        }
+        private static EmployeeExtended _currentAccount;
+        public static EmployeeExtended CurrentAccount
         {
             get => _currentAccount;
             set
@@ -18,7 +30,7 @@ namespace TeleTech.Stores
         public bool IsLoggedIn => CurrentAccount != null;
 
 
-        public event Action? CurrentAccountChanged;
+        public static event Action? CurrentAccountChanged;
 
     }
 }

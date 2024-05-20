@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:TeleTech.View"
+    xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
     d:DesignWidth="800"
@@ -32,10 +33,11 @@
                     CornerRadius="15">
                     <Grid>
                         <Image
+                            Height="65"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Source="/Assets/Icons/teamwork.png" />
-                        <TextBlock HorizontalAlignment="Center" Text="Пользователей" />
+                        <TextBlock Style="{StaticResource HomeViewTopBar}" Text="{Binding CountOfUser}" />
                         <Image />
                     </Grid>
 
@@ -48,10 +50,11 @@
                     CornerRadius="15">
                     <Grid>
                         <Image
+                            Height="65"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
-                            Source="/Assets/Icons/teamwork.png" />
-                        <TextBlock HorizontalAlignment="Center" Text="Пользователей" />
+                            Source="/Assets/Icons/sims.png" />
+                        <TextBlock Style="{StaticResource HomeViewTopBar}" Text="{Binding CountOfSims}" />
                         <Image />
                     </Grid>
 
@@ -64,10 +67,11 @@
                     CornerRadius="15">
                     <Grid>
                         <Image
+                            Height="65"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
-                            Source="/Assets/Icons/teamwork.png" />
-                        <TextBlock HorizontalAlignment="Center" Text="Пользователей" />
+                            Source="/Assets/Icons/sales.png" />
+                        <TextBlock Style="{StaticResource HomeViewTopBar}" Text="{Binding CountOfSalesPerMonth}" />
                         <Image />
                     </Grid>
 
@@ -77,19 +81,162 @@
             <!--  Diagramm  -->
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*" />
                     <ColumnDefinition Width="2*" />
-                    <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
                 <Border
                     Margin="10"
                     Padding="10,10"
                     Background="{StaticResource SecondaryBackgroundColor}"
                     CornerRadius="15">
-                    <Grid />
+                    <Grid>
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            Style="{StaticResource HomeViewTopBar}"
+                            Text="Тарифы" />
+                        <lvc:PieChart
+                            Margin="0,25,0,0"
+                            Foreground="White"
+                            LegendLocation="Right"
+                            Series="{Binding SeriesCollection}">
+                            <lvc:PieChart.DataTooltip>
+                                <lvc:DefaultTooltip Foreground="White" />
+                            </lvc:PieChart.DataTooltip>
+                        </lvc:PieChart>
+                    </Grid>
+
+
+                </Border>
+                <Border
+                    Grid.Column="1"
+                    Margin="10"
+                    Padding="10,10"
+                    Background="{StaticResource SecondaryBackgroundColor}"
+                    CornerRadius="15">
+                    <Grid>
+                        <TextBlock Style="{StaticResource HomeViewTopBar}" Text="Продажи тарифов" />
+                        <lvc:CartesianChart
+                            Margin="0,25,0,0"
+                            Foreground="White"
+                            LegendLocation="Right"
+                            Series="{Binding SeriesCollectionG}">
+                            <lvc:CartesianChart.AxisY>
+                                <lvc:Axis
+                                    Title="Продажи"
+                                    Foreground="White"
+                                    LabelFormatter="{Binding YFormatter}" />
+                            </lvc:CartesianChart.AxisY>
+                            <lvc:CartesianChart.AxisX>
+                                <lvc:Axis
+                                    Title="Месяца"
+                                    Foreground="White"
+                                    Labels="{Binding Labels}" />
+                            </lvc:CartesianChart.AxisX>
+                        </lvc:CartesianChart>
+                    </Grid>
+
 
 
                 </Border>
             </Grid>
+            <Border
+                Grid.Row="2"
+                Margin="10"
+                Padding="10,10"
+                Background="{StaticResource SecondaryBackgroundColor}"
+                CornerRadius="15">
+
+                <Grid>
+
+
+                    <TextBlock
+                        Margin="0,5"
+                        HorizontalAlignment="Center"
+                        FontSize="18"
+                        Foreground="White"
+                        Text="Наши продажи" />
+                    <lvc:CartesianChart
+                        Margin="0,25,0,0"
+                        Foreground="White"
+                        LegendLocation="Left"
+                        Series="{Binding SeriesCollection1}">
+
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis
+                                Title="Даты"
+                                Foreground="White"
+                                Labels="{Binding Labels1}" />
+                        </lvc:CartesianChart.AxisX>
+
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Title="Продажи" Foreground="White" />
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
+
+
+
+                </Grid>
+            </Border>
+
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="3*" />
+            </Grid.RowDefinitions>
+            <Border
+                Margin="10"
+                Padding="10,10"
+                Background="{StaticResource SecondaryBackgroundColor}"
+                CornerRadius="15">
+                <Grid>
+                    <Image
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Source="/Assets/Icons/teamwork.png" />
+                    <TextBlock HorizontalAlignment="Center" Text="{Binding}" />
+                    <Image />
+                </Grid>
+            </Border>
+            <Border
+                Grid.Row="1"
+                Margin="10"
+                Padding="10,10"
+                Background="{StaticResource SecondaryBackgroundColor}"
+                CornerRadius="15">
+                <ListView
+                    Background="Transparent"
+                    BorderThickness="0"
+                    ItemsSource="{Binding Simissuances}"
+                    ScrollViewer.CanContentScroll="False"
+                    ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="5*" />
+                                    <ColumnDefinition Width="1*" />
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                    Grid.Column="0"
+                                    Height="35"
+                                    Source="/Assets/Icons/sales1.png" />
+                                <TextBlock
+                                    Grid.Column="1"
+                                    Margin="20,0"
+                                    Style="{StaticResource HomeViewTopBar}"
+                                    Text="{Binding TariffName}" />
+                                <TextBlock
+                                    Grid.Column="2"
+                                    Margin="20,0"
+                                    Style="{StaticResource HomeViewTopBar}"
+                                    Text="{Binding IssueDate}"  />
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Border>
         </Grid>
 
     </Grid>

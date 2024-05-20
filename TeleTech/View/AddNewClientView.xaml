@@ -1,60 +1,198 @@
-﻿<UserControl x:Class="TeleTech.View.AddNewClientView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:TeleTech.View"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="AliceBlue">
+﻿<UserControl
+    x:Class="TeleTech.View.AddNewClientView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:TeleTech.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    Background="AliceBlue"
+    mc:Ignorable="d">
     <Grid>
-        
-        
-        <StackPanel Orientation="Vertical" >
-            <Grid Grid.Row="1" HorizontalAlignment="Center" Width="300" Height="30">
-                <TextBlock Margin="10 0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
-Panel.ZIndex="1" Text="Имя" Visibility="{Binding ElementName=Name, Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
-                <TextBox x:Name="Name" Text="{Binding users.Name}" Style="{StaticResource SearchBox}" Height="30"/>
+
+
+        <StackPanel Orientation="Vertical">
+            <Grid
+                Grid.Row="1"
+                Width="300"
+                Height="30"
+                HorizontalAlignment="Center">
+                <TextBlock
+                    Margin="10,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Panel.ZIndex="1"
+                    Foreground="#b0b9c6"
+                    IsHitTestVisible="False"
+                    Text="Имя"
+                    Visibility="{Binding ElementName=Name, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}" />
+                <TextBox
+                    x:Name="Name"
+                    Height="30"
+                    Style="{StaticResource SearchBox}"
+                    Text="{Binding NewUser.Name}" />
             </Grid>
-            <Grid Grid.Row="1" Width="300" Height="30" HorizontalAlignment="Center">
-                <TextBlock Margin="10 0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
-Panel.ZIndex="1" Text="Фамилия" Visibility="{Binding ElementName=SurName, Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
-                <TextBox x:Name="SurName" Text="{Binding users.Surname}" Style="{StaticResource SearchBox}" Height="30"/>
+            <Grid
+                Grid.Row="1"
+                Width="300"
+                Height="30"
+                HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="22*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock
+                    Margin="125,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Panel.ZIndex="1"
+                    Foreground="#b0b9c6"
+                    IsHitTestVisible="False"
+                    Text="Фамилия"
+                    Visibility="{Binding ElementName=SurName, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}" />
+                <TextBox
+                    x:Name="SurName"
+                    Grid.ColumnSpan="2"
+                    Height="30"
+                    Style="{StaticResource SearchBox}"
+                    Text="{Binding NewUser.Surname}" />
             </Grid>
-            <Grid Grid.Row="2" Width="300" Height="30" HorizontalAlignment="Center">
-                <TextBlock Margin="10 0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
-Panel.ZIndex="1" Text="Отчество" Visibility="{Binding ElementName=Patronymic, Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
-                <TextBox x:Name="Patronymic" Text="{Binding users.Patronymic}" Style="{StaticResource SearchBox}" Height="30"/>
+            <Grid
+                Grid.Row="2"
+                Width="300"
+                Height="30"
+                HorizontalAlignment="Center">
+                <TextBlock
+                    Margin="10,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Panel.ZIndex="1"
+                    Foreground="#b0b9c6"
+                    IsHitTestVisible="False"
+                    Text="Отчество"
+                    Visibility="{Binding ElementName=Patronymic, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}" />
+                <TextBox
+                    x:Name="Patronymic"
+                    Height="30"
+                    Style="{StaticResource SearchBox}"
+                    Text="{Binding NewUser.Patronymic}" />
             </Grid>
-            <Grid Grid.Row="2" Width="300" Height="30" HorizontalAlignment="Center">
-                <TextBlock Margin="10 0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
-Panel.ZIndex="1" Text="Дата рождения" Visibility="{Binding ElementName=BirthDay, Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
-                <TextBox x:Name="BirthDay" Text="{Binding users.Birthday}" Style="{StaticResource SearchBox}" Height="30"/>
+            <Grid
+                Grid.Row="2"
+                Width="300"
+                Height="30"
+                HorizontalAlignment="Center">
+                <TextBlock
+                    Margin="10,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Panel.ZIndex="1"
+                    Foreground="#b0b9c6"
+                    IsHitTestVisible="False"
+                    Text="Дата рождения"
+                    Visibility="{Binding ElementName=BirthDay, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}" />
+                <TextBox
+                    x:Name="BirthDay"
+                    Height="30"
+                    Style="{StaticResource SearchBox}"
+                    Text="{Binding NewUser.Birthday}" />
             </Grid>
-            <Grid Grid.Row="2" Width="300" Height="40" HorizontalAlignment="Center">
-                <TextBlock Margin="10 0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
-Panel.ZIndex="1" Text="Адрес" Visibility="{Binding ElementName=Address, Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
-                <TextBox x:Name="Address" Text="{Binding users.Address, Mode=TwoWay}" Style="{StaticResource SearchBox}" Height="30"/>
+            <Grid
+                Grid.Row="2"
+                Width="300"
+                Height="40"
+                HorizontalAlignment="Center">
+                <TextBlock
+                    Margin="10,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Panel.ZIndex="1"
+                    Foreground="#b0b9c6"
+                    IsHitTestVisible="False"
+                    Text="Адрес"
+                    Visibility="{Binding ElementName=Address, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}" />
+                <TextBox
+                    x:Name="Address"
+                    Height="30"
+                    Style="{StaticResource SearchBox}"
+                    Text="{Binding NewUser.Address, Mode=TwoWay}" />
             </Grid>
-            <Grid Grid.Row="2" Width="300" Height="30" HorizontalAlignment="Center">
-                <TextBlock Margin="10 0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
-Panel.ZIndex="1" Text="Номер пасспорта" Visibility="{Binding ElementName=PassportId, Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
-                <TextBox x:Name="PassportId" Text="{Binding users.PassportId}" Style="{StaticResource SearchBox}" Height="30"/>
+            <Grid
+                Grid.Row="2"
+                Width="300"
+                Height="30"
+                HorizontalAlignment="Center">
+                <TextBlock
+                    Margin="10,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Panel.ZIndex="1"
+                    Foreground="#b0b9c6"
+                    IsHitTestVisible="False"
+                    Text="Номер пасспорта"
+                    Visibility="{Binding ElementName=PassportId, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}" />
+                <TextBox
+                    x:Name="PassportId"
+                    Height="30"
+                    Style="{StaticResource SearchBox}"
+                    Text="{Binding NewUser.PassportId}" />
             </Grid>
-            <Grid Grid.Row="2" Width="300" Height="40" HorizontalAlignment="Center">
-                <TextBlock Margin="10 0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
-Panel.ZIndex="1" Text="Дата выдачи пасспорта" Visibility="{Binding ElementName=PassportIssueDate, Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
-                <TextBox x:Name="PassportIssueDate" Text="{Binding users.PassportIssueDate}" Style="{StaticResource SearchBox}" Height="30"/>
+            <Grid
+                Grid.Row="2"
+                Width="300"
+                Height="40"
+                HorizontalAlignment="Center">
+                <TextBlock
+                    Margin="10,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Panel.ZIndex="1"
+                    Foreground="#b0b9c6"
+                    IsHitTestVisible="False"
+                    Text="Дата выдачи пасспорта"
+                    Visibility="{Binding ElementName=PassportIssueDate, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}" />
+                <TextBox
+                    x:Name="PassportIssueDate"
+                    Height="30"
+                    Style="{StaticResource SearchBox}"
+                    Text="{Binding NewUser.PassportIssueDate}" />
             </Grid>
-            <Grid Grid.Row="2" Width="300" Height="30" HorizontalAlignment="Center">
-                <TextBlock Margin="10 0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
-Panel.ZIndex="1" Text="Место выдачи паспорта" Visibility="{Binding ElementName=PlaceOfPassportIssue, Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
-                <TextBox x:Name="PlaceOfPassportIssue" Text="{Binding users.PlaceOfPassportIssue}" Style="{StaticResource SearchBox}" Height="30"/>
+            <Grid
+                Grid.Row="2"
+                Width="300"
+                Height="30"
+                HorizontalAlignment="Center">
+                <TextBlock
+                    Margin="10,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Panel.ZIndex="1"
+                    Foreground="#b0b9c6"
+                    IsHitTestVisible="False"
+                    Text="Место выдачи паспорта"
+                    Visibility="{Binding ElementName=PlaceOfPassportIssue, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}" />
+                <TextBox
+                    x:Name="PlaceOfPassportIssue"
+                    Height="30"
+                    Style="{StaticResource SearchBox}"
+                    Text="{Binding NewUser.PlaceOfPassportIssue}" />
             </Grid>
-            <ComboBox x:Name="cha" Height="30" Width="300" ItemsSource="{Binding SimList}" DisplayMemberPath="Tariff" 
-                      SelectedValuePath="SimcardNumber" SelectedValue="{Binding SelectedSimCard.SimcardNumber, Mode=TwoWay}" SelectedItem="{Binding SelectedSimCard.SimcardNumber, Mode=TwoWay}" SelectionChanged="cha_SelectionChanged"/>
-            <Button Content="Зарегистрироваться" Command="{Binding AddUserCommand}" CommandParameter="{Binding selectedSimCardId}"></Button>
-            <Button Content="распечатать" Command="{Binding GetAgreementCommand}"/>
+            <ComboBox
+                x:Name="TariffComboBox"
+                Width="300"
+                Height="30"
+                DisplayMemberPath="TariffName"
+                ItemsSource="{Binding SimList}"
+                SelectedValue="{Binding NewUser.SimCardNumber, Mode=TwoWay}"
+                SelectedValuePath="SimcardNumber" />
+
+            <Button
+                Command="{Binding AddUserCommand}"
+                CommandParameter="{Binding NewUser}"
+                Content="Зарегистрироваться" />
+            <Button Command="{Binding GetAgreementCommand}" Content="распечатать" />
         </StackPanel>
-        
+
     </Grid>
 </UserControl>

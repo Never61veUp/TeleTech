@@ -48,6 +48,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+
     </Style>
     <!--  UsersPageTabBarTextBox  -->
     <Style x:Key="TabBarTextBlock" TargetType="TextBlock">
@@ -100,6 +101,14 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+    <!--#endregion-->
+
+    <!--#region HomeView-->
+    <Style x:Key="HomeViewTopBar" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="Foreground" Value="{StaticResource MainTextColor}" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
     </Style>
     <!--#endregion-->
 

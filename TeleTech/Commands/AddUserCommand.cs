@@ -1,17 +1,23 @@
 ﻿using System.Windows;
 using TeleTech.Model;
+using TeleTech.Stores;
 
 namespace TeleTech.Commands
 {
     internal class AddUserCommand : CommandBase
     {
-        public ArmContext armContext = new ArmContext();
-        private User _newUser;
-        private Sim _selectedSimCard;
+        private readonly ArmContext _armContext = new();
 
+        private UserExtended _newUser;
+        EmployeeExtended _employee;
+        public AddUserCommand()
+        {
+            _employee = AccountStore.CurrentAccount;
+        }
         public override void Execute(object? parameter)
         {
-            var sim = armContext.Sims.Where(s => s.SimcardNumber == _selectedSimCard.SimcardNumber).FirstOrDefault();
+            _newUser = parameter as UserExtended;
+            var sim = _armContext.Sims.Where(x => x.SimcardNumber == _newUser.SimCardNumber).FirstOrDefault();
 
             User newUser = new User()
             {
@@ -23,39 +29,35 @@ namespace TeleTech.Commands
                 PassportIssueDate = _newUser.PassportIssueDate,
                 PlaceOfPassportIssue = _newUser.PlaceOfPassportIssue,
                 PassportId = _newUser.PassportId,
-                AccountStatus = 0
+                AccountStatus = 1
             };
             Simissuance newSimissuance = new Simissuance()
             {
                 PassportNumber = _newUser.PassportId,
-                SimcardNumber = _selectedSimCard.SimcardNumber,
+                SimcardNumber = (int)_newUser.SimCardNumber,
                 IssueDate = DateOnly.FromDateTime(DateTime.Today),
                 ExpiryDate = DateOnly.FromDateTime(DateTime.Today.AddYears(6)),
-
-
-
-
-
+                EmployeeId = AccountStore.CurrentAccount.UserId
             };
             try
             {
-                armContext.Users.Add(newUser);
-                armContext.SaveChanges();
-                if (armContext.SaveChanges() == 0)
+                _armContext.Users.Add(newUser);
+                _armContext.SaveChanges();
+                if (_armContext.SaveChanges() == 0)
                 {
-                    armContext.Simissuances.Add(newSimissuance);
-                    armContext.SaveChanges();
-                    if (armContext.SaveChanges() == 0)
+                    _armContext.Simissuances.Add(newSimissuance);
+                    _armContext.SaveChanges();
+                    if (_armContext.SaveChanges() == 0)
                     {
                         sim.IsStock = false;
-                        armContext.SaveChanges();
+                        _armContext.SaveChanges();
                         MessageBox.Show("Регистрация успешна", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     else
                     {
-                        armContext.Users.Remove(newUser);
-                        armContext.SaveChanges(true);
-                        if (armContext.SaveChanges() == 0)
+                        _armContext.Users.Remove(newUser);
+                        _armContext.SaveChanges(true);
+                        if (_armContext.SaveChanges() == 0)
                         {
                             MessageBox.Show("Регистрация не успешна");
                         }
@@ -76,12 +78,6 @@ namespace TeleTech.Commands
 
 
         }
-        public AddUserCommand(User newUser, Sim selectedSimCard)
-        {
-            _newUser = newUser;
-            _selectedSimCard = selectedSimCard;
-
-
-        }
+        
     }
 }

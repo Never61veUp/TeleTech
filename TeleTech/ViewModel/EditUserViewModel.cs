@@ -6,28 +6,23 @@ namespace TeleTech.ViewModel
 {
     internal class EditUserViewModel : ViewModelBase
     {
-        public ICommand SaveUserEditChanges { get; }
-        public ICommand GetAgreementCommand { get; }
-        public ArmContext armContext = new ArmContext();
-        public User users { get; set; }
-        private int _idUser;
 
-        public List<Sim> sims { get; set; }
-        private List<Simissuance> simissuances;
+        private readonly ArmContext _armContext = new();
 
-
+        private readonly int _idUser;
         public EditUserViewModel(int idUser)
         {
             _idUser = idUser;
+            SelectedUser = _armContext.Users.Where(x => x.Id == _idUser).FirstOrDefault();
 
-
-
-            users = armContext.Users.Where(x => x.Id == _idUser).FirstOrDefault();
-            SaveUserEditChanges = new EditUserCommand(users, _idUser);
-            GetAgreementCommand = new GetAgreementCommand(users);
-
-
+            SaveUserEditChanges = new EditUserCommand(SelectedUser, _idUser);
+            GetAgreementCommand = new GetAgreementCommand(SelectedUser);
 
         }
+        #region ICOMMAND
+        public ICommand SaveUserEditChanges { get; }
+        public ICommand GetAgreementCommand { get; }
+        #endregion
+        public User SelectedUser { get; set; }
     }
 }

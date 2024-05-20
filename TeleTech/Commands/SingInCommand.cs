@@ -31,13 +31,15 @@ namespace TeleTech.Commands
                 && x.Password == _singInViewModel.Password).Count();
                 if (countRecord == 1)
                 {
-                    _navigationStore.CurrentView = new HomeViewModel();
+                    
                     EmployeeExtended? account = new(_singInViewModel.EmployeeCode)
                     {
                         EmployeeCode = _singInViewModel.EmployeeCode,
+                        
 
                     };
-                    _accountStore.CurrentAccount = account;
+                    AccountStore.CurrentAccount = account;
+                    _navigationStore.CurrentView = new HomeViewModel();
 
                 }
                 else

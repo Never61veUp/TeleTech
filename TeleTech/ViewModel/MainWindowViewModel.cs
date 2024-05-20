@@ -27,12 +27,12 @@ namespace TeleTech.ViewModel
             _navigationStore.CurrentDialogChanged += OnCurrentDialogChanged;
 
             _accountStore = accountStore;
-            _accountStore.CurrentAccountChanged += AccountStore_CurrentAccountChanged;
+            AccountStore.CurrentAccountChanged += AccountStore_CurrentAccountChanged;
             TariffViewModel.OpenEditTariffDialogWindowCommand = new ShowDialogCommand<EditTariffViewModel>
                 (_navigationStore, () => new EditTariffViewModel(_tariffViewModel.SelectedTariffId), this);
             HomeCommand = new NavigationCommand<HomeViewModel>(_navigationStore, () => new HomeViewModel(), _accountStore);
-            UsersCommand = new NavigationCommand<UsersViewModel>(_navigationStore, () => new UsersViewModel(_navigationStore,
-                _accountStore, this), _accountStore);
+            UsersCommand = new NavigationCommand<UsersViewModel>(_navigationStore, () => new UsersViewModel(_navigationStore
+               ,this), _accountStore);
             TariffCommand = new NavigationCommand<TariffViewModel>(_navigationStore, () => new TariffViewModel(), _accountStore);
             //SettingsCommand = new NavigationCommand<SettingsViewModel>(_navigationStore, () => new SettingsViewModel(),
             //    _accountStore);
@@ -41,7 +41,7 @@ namespace TeleTech.ViewModel
             SingOutCommand = new SingOutCommand(_navigationStore, _accountStore);
 
             UsersViewModel.AddNewClientCommand = new ShowDialogCommand<AddNewClientViewModel>(_navigationStore,
-                () => new AddNewClientViewModel(_accountStore), this);
+                () => new AddNewClientViewModel(), this);
             CloseDialogWindowCommand = new ShowDialogCommand<AddNewClientViewModel>(_navigationStore, () => null, this);
             TariffViewModel.AddTariffDIalogWindowShowCommand = new ShowDialogCommand<AddTariffViewModel>(_navigationStore,()=> new AddTariffViewModel(),this);
 
@@ -56,7 +56,7 @@ namespace TeleTech.ViewModel
         public ICommand CloseDialogWindowCommand { get; }
         #endregion
 
-        public EmployeeExtended CurrentEmployee => _accountStore.CurrentAccount;
+        public EmployeeExtended CurrentEmployee => AccountStore.CurrentAccount;
 
         public ViewModelBase? CurrentView => _navigationStore.CurrentView;
         public ViewModelBase? CurrentDialog => _navigationStore.CurrentDialog;
@@ -111,7 +111,7 @@ namespace TeleTech.ViewModel
         private void AccountStore_CurrentAccountChanged()
         {
             OnPropertyChanged(nameof(CurrentEmployee));
-            if (_accountStore.CurrentAccount != null)
+            if (AccountStore.CurrentAccount != null)
                 IsLeftBarVisible = true;
 
             else

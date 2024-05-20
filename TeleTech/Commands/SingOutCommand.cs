@@ -14,7 +14,7 @@ namespace TeleTech.Commands
         }
         public override void Execute(object? parameter)
         {
-            _accountStore.CurrentAccount = null;
+            AccountStore.CurrentAccount = null;
             _navigationStore.CurrentView = new SingInViewModel(_navigationStore, _accountStore);
         }
     }
