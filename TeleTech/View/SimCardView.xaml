@@ -6,6 +6,7 @@
     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:local="clr-namespace:TeleTech.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="ThisWindow"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
@@ -46,8 +47,7 @@
             ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}"
             ItemsSource="{Binding Sims}"
             RowStyle="{StaticResource DataGridRowStyle}"
-            SelectedValue="{Binding SelectedTariffId}"
-            SelectedValuePath="Id"
+            SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
             Style="{DynamicResource DataGridStyle}">
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn Width="auto" CanUserResize="False">
@@ -107,7 +107,8 @@
                                 </Button>
                                 <Button
                                     Margin="8,0"
-                                    Command="{Binding ElementName=ThisWindow, Path=DataContext.RemoveUserCommand}"
+                                    Command="{Binding ElementName=ThisWindow, Path=DataContext.RemoveSimCommand}"
+                                    CommandParameter="{Binding ElementName=ThisWindow, Path=DataContext.SelectedItem}"
                                     Style="{StaticResource GridDeleteButton}">
                                     <iconPacks:MaterialDesign Kind="Delete" />
                                 </Button>

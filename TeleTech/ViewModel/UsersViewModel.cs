@@ -133,7 +133,13 @@ namespace TeleTech.ViewModel
             if (!String.IsNullOrEmpty(FilterText))
             {
                 UsersWithSIMs = UsersWithSIMs.Where(x => x.PassportId.ToString().Contains(FilterText) ||
-                x.Surname.ToLower().Contains(FilterText)).ToList();
+                x.Surname.ToLower().Contains(FilterText) || 
+                x.Address.ToLower().Contains(FilterText) ||
+                x.Name.ToLower().Contains(FilterText) ||
+                x.Patronymic.ToLower().Contains(FilterText) ||
+                x.Tariff.ToLower().Contains(FilterText) ||
+                x.SimCardNumber.ToString().Contains(FilterText)
+                ).ToList();
             }
 
             CountUsers = $"{UsersWithSIMs.Count()} пользователей";

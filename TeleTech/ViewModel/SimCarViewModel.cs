@@ -13,16 +13,19 @@ namespace TeleTech.ViewModel
         private List<Tariff> _tariff;
 
         private Sim _sim = new Sim();
+        private object _selectedItem;
 
         public SimCarViewModel()
         {
             AddNewSimCommand = new AddNewSimCommand();
+            RemoveSimCommand = new RemoveSimCommand();
             Sims = _armContext.Sims.ToList();
             Tariff = _armContext.Tariffs.ToList();
 
         }
 
         public ICommand AddNewSimCommand { get; set; }
+        public ICommand RemoveSimCommand { get; set; }
         public List<Sim> Sims
         {
             get => _sims;
@@ -31,6 +34,16 @@ namespace TeleTech.ViewModel
                 _sims = value;
                 OnPropertyChanged(nameof(Sims));
             }
+        }
+        public object SelectedItem
+        {
+            get => _selectedItem;
+            set
+            {
+                _selectedItem = value;
+                OnPropertyChanged(nameof(SelectedItem));
+            }
+
         }
         public List<Tariff> Tariff
         {
@@ -73,7 +86,8 @@ namespace TeleTech.ViewModel
             if (!String.IsNullOrEmpty(FilterText))
             {
                 Sims = Sims.Where(x => x.SimcardNumber.ToString().Contains(FilterText) ||
-                x.UserPassport.ToString().ToLower().Contains(FilterText) || x.TariffName.Contains(FilterText)).ToList();
+                x.UserPassport.ToString().Contains(FilterText) || 
+                x.TariffName.Contains(FilterText)).ToList();
             }
 
 
