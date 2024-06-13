@@ -3,7 +3,7 @@ using TeleTech.ViewModel;
 
 namespace TeleTech.Commands
 {
-    internal class ShowDialogCommand<TView> : CommandBase
+    public class ShowDialogCommand<TView> : CommandBase
         where TView : ViewModelBase
     {
         private readonly NavigationStore _navigationStore;

@@ -6,7 +6,7 @@ using TeleTech.Stores;
 
 namespace TeleTech.ViewModel
 {
-    internal class MainWindowViewModel : ViewModelBase
+    public class MainWindowViewModel : ViewModelBase
     {
 
         private bool _isAppActive = true;

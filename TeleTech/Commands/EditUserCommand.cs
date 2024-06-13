@@ -3,7 +3,7 @@ using TeleTech.Model;
 
 namespace TeleTech.Commands
 {
-    internal class EditUserCommand : CommandBase
+    public class EditUserCommand : CommandBase
     {
         private ArmContext armContext = new ArmContext();
         private User _userWithChanges;
@@ -11,6 +11,7 @@ namespace TeleTech.Commands
         private User _users;
         public override void Execute(object? parameter)
         {
+            
             using (var transaction = armContext.Database.BeginTransaction())
             {
                 try
@@ -71,6 +72,7 @@ namespace TeleTech.Commands
                     // Если произошло исключение, откатываем транзакцию
                     transaction.Rollback();
                     MessageBox.Show($"Произошло исключение: {ex.Message}");
+                    throw new Exception();
                 }
             }
 

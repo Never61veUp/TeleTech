@@ -18,6 +18,7 @@
   <ItemGroup>
     <None Remove="Assets\Icons\ava1.png" />
     <None Remove="Assets\Icons\free-icon-growth-5412879.png" />
+    <None Remove="Assets\Icons\free-icon-processing-1288309.png" />
     <None Remove="Assets\Icons\home.png" />
     <None Remove="Assets\Icons\logout.png" />
     <None Remove="Assets\Icons\Mask group.png" />
@@ -62,6 +63,7 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\Icons\free-icon-growth-5412879.png" />
+    <Resource Include="Assets\Icons\free-icon-processing-1288309.png" />
     <Resource Include="Assets\Icons\home.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

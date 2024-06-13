@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeleTech", "TeleTech\TeleTe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CheckLibraries", "CheckLibraries", "{23670497-BE87-49F1-B8AA-C72C212764A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringCheckLibrary", "StringCheckLibrary\StringCheckLibrary.csproj", "{9B6F7472-F50C-4AC5-99EE-F8427F43B7EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringCheckLibrary", "StringCheckLibrary\StringCheckLibrary.csproj", "{9B6F7472-F50C-4AC5-99EE-F8427F43B7EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeleTechTests", "TeleTechTests\TeleTechTests.csproj", "{90469CF5-002C-4312-8194-6BD49D58C3D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{9B6F7472-F50C-4AC5-99EE-F8427F43B7EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B6F7472-F50C-4AC5-99EE-F8427F43B7EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B6F7472-F50C-4AC5-99EE-F8427F43B7EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90469CF5-002C-4312-8194-6BD49D58C3D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90469CF5-002C-4312-8194-6BD49D58C3D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90469CF5-002C-4312-8194-6BD49D58C3D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90469CF5-002C-4312-8194-6BD49D58C3D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

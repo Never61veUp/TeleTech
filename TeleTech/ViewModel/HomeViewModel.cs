@@ -5,16 +5,23 @@ using System.Drawing;
 using System.Windows.Media;
 using TeleTech.Model;
 using TeleTech.Stores;
+using System.Timers;
 
 namespace TeleTech.ViewModel
 {
     internal class HomeViewModel : ViewModelBase
     {
         private readonly ArmContext _armContext = new();
-        
+        private DateTime _date;
+        private System.Timers.Timer _timer;
+        private string _currentTime;
+
         public HomeViewModel()
         {
-            
+            _timer = new System.Timers.Timer(1000); // Обновление каждую секунду
+            _timer.Elapsed += OnTimerElapsed;
+            _timer.Start();
+
             Simissuances = _armContext.Simissuances.ToList();
             Simissuances = Simissuances.OrderByDescending(x => x.IssueDate).ToList();
             CreateDiagram();
@@ -22,6 +29,25 @@ namespace TeleTech.ViewModel
             CreateMiniGraph();
             
         }
+
+        private void OnTimerElapsed(object? sender, ElapsedEventArgs e)
+        {
+            CurrentTime = DateTime.Now.ToString("HH:mm:ss\ndd.MM.yyyy");
+        }
+
+        public string CurrentTime {
+            get => _currentTime;
+            set
+            {
+                if (_currentTime != value)
+                {
+                    _currentTime = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+
         public List<Simissuance> Simissuances { get; set; } = new List<Simissuance>();
         private void CreateMiniGraph()
         {
@@ -86,6 +112,7 @@ namespace TeleTech.ViewModel
         public Func<double, string> YFormatter { get; set; }
 
         private ChartValues<int> tariff1 = new ChartValues<int>();
+        
 
         private void CreateDiagram()
         {

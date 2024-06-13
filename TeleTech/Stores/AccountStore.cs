@@ -2,7 +2,7 @@
 
 namespace TeleTech.Stores
 {
-    internal class AccountStore
+    public class AccountStore
     {
         private static AccountStore _instance;
         public static AccountStore Instance
@@ -27,7 +27,7 @@ namespace TeleTech.Stores
             }
         }
 
-        public bool IsLoggedIn => CurrentAccount != null;
+        public bool IsLoggedIn { get { return CurrentAccount != null; } set { } }
 
 
         public static event Action? CurrentAccountChanged;

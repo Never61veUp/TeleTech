@@ -2,7 +2,7 @@
 
 namespace TeleTech.Stores
 {
-    internal class NavigationStore
+    public class NavigationStore
     {
         public event Action? CurrentViewChanged;
         private ViewModelBase? _currentView;

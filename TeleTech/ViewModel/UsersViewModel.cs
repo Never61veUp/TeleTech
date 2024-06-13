@@ -137,7 +137,7 @@ namespace TeleTech.ViewModel
                 x.Address.ToLower().Contains(FilterText) ||
                 x.Name.ToLower().Contains(FilterText) ||
                 x.Patronymic.ToLower().Contains(FilterText) ||
-                x.Tariff.ToLower().Contains(FilterText) ||
+                //x.Tariff.ToLower().Contains(FilterText) 
                 x.SimCardNumber.ToString().Contains(FilterText)
                 ).ToList();
             }
